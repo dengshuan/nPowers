@@ -66,6 +66,7 @@ Phantomjs 和 Celery 用来自动爬取 Site 信息
 
 
 * issues
+** 2015-04-21
 登录或退出后 redirect 到首页，但 flash 的消息一直在首页，除非手动关闭
 消息，否则消息会一直保留在首页。最终发现是之前测试时给首页加了缓存
 #+BEGIN_SRC python
