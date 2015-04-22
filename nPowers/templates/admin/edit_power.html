@@ -1,0 +1,30 @@
+{% extends "admin/base.html" %}
+{% from "_macros.html" import render_field, textarea, select_panel, hide_select %}
+
+{% block content %}
+
+<label>Update Logo</label>
+<form id="upload-form">
+  <input type="file" id="upload-file" name="file" />
+</form>
+<div class="hide" id="uploading">
+  <input type="button" id="upload" class="button" name="upload" value="Upload" />
+  <div class="progress"><span id="progressbar" class="meter" style="width:0%">0%</span></div>
+</div>
+<div class="thumbnail">
+  <img src="{{ item.img|get_image }}" id="thumbnail"{% if not item.img %} class="hide" {% endif %}/>
+</div>
+
+
+<form action="{{ url_for('admin.edit_power', uuid=item.id) }}" method="post">
+  {{ form.csrf_token }}
+  <input type="hidden" id="uuid" name="uuid" value="{{ item.id }}" />
+  <input type="hidden" id="img" name="img" value="{{ item.img }}" />
+  {{ render_field(form.name, value=item.name) }}
+  {{ render_field(form.url, value=item.url) }}
+  {{ textarea("intro", "Intro", value=item.intro) }}
+  {{ select_panel(form.tags.choices, item.tags) }}
+  {{ hide_select("tags", form.tags.choices, item.tags) }}
+  <input type="submit" class="button" value="Update">
+</form>
+{% endblock content %}

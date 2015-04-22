@@ -1,0 +1,137 @@
+{% macro nav_link(active_page, page, endpoint, text) %}
+  {% if active_page == page %}
+    <li class="active"><a href="{{ url_for(endpoint, **kwargs) }}">{{ text|capitalize }}</a></li>
+  {% else %}
+    <li><a href="{{ url_for(endpoint, **kwargs) }}">{{ text|capitalize }}</a></li>
+  {% endif %}
+{% endmacro %}
+
+{% macro render_field(field) %}
+  <label>{{ field.label }}</label>
+  {{ field(**kwargs)|safe }}
+  {% if field.errors %}
+    <ul class="errors">
+      {% for error in field.errors %}
+	<li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endmacro %}
+
+{% macro render_pagination(pagination) %}
+  <div class="row pagination-centered">
+    <ul class="pagination">
+    {% if pagination.has_prev %}
+      <li class="arrow">
+	<a href="{{ url_for_other_page(pagination.page-1) }}">&laquo;</a>	
+      </li>
+    {% else %}
+      <li class="arrow unavailable"><a href="">&laquo;</a></li>
+    {% endif %}
+    {% for page in pagination.iter_pages() %}
+      {% if page %}
+	{% if page != pagination.page %}
+	  <li><a href="{{ url_for_other_page(page)}}">{{ page }}</a></li>
+	{% else %}
+	  <li class="current"><a>{{ page }}</a></li>
+	{% endif %}
+      {% else %}
+	<li class="unavailable"><a href="">&hellip;</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if pagination.has_next %}
+      <li class="arrow">
+	<a href="{{ url_for_other_page(pagination.page+1) }}">&raquo;</a>	
+      </li>
+      {% else %}
+      <li class="arrow unavailable"><a href="">&raquo;</a></li>
+    {% endif %}
+    </ul>
+  </div>
+{% endmacro %}
+
+{% macro select_panel(choices, selected=none) %}
+  <div class="row">
+    <div class="small-5 columns">
+      <input name="filter" type="text" placeholder="type to search"/>
+    </div>
+    <div class="small-5 columns">
+      <input name="filter" type="text" placeholder="type to search"/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-5 columns">
+      <select id="from" size="20" multiple>
+	{% for value, text in choices %}
+	  {% if selected and (value in selected|get_ids) %}
+	  {% else %}
+	    <option value="{{ value }}">{{ text }}</option>
+	  {% endif %}
+	{% endfor %}
+      </select>
+    </div>
+    <div class="small-2 columns">
+      <button type="button" id="add" title="Add">&gt;&gt;</button>
+      <button type="button" id="remove" title="Remove">&lt;&lt;</button>
+    </div>
+    <div class="small-5 columns">
+      <select id="to" multiple size="20">
+	{% for value, text in choices %}
+	  {% if selected and (value in selected|get_ids) %}
+	    <option value="{{ value }}">{{ text }}</option>
+	  {% endif %}
+	{% endfor %}
+      </select>
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro hide_select(name, choices, selected=none) %}
+  <div class="hide">
+    <select id="{{ name }}" multiple name="{{ name }}">
+      {% for value, text in choices %}
+	<option value="{{ value }}" {% if selected and (value in selected|get_ids) %}selected{% endif %}>{{ text }}</option>
+      {% endfor %}
+    </select>
+  </div>    
+{% endmacro %}
+
+{% macro messages() %}
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+	<div data-alert class="alert-box {{ category }} radius">
+	  {{ message }}
+	  <a class="close" href="#">&times;</a>
+	</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+{% endmacro %}
+
+
+{% macro input(name, label, type="text", value="") -%}
+  <label class="" for="{{ name }}">{{ label }}
+    <input id="{{ name }}" type="{{ type }}" name="{{ name }}" class="" value="{{ value }}" />
+  </label>
+{% endmacro %}
+
+
+{% macro textarea(name, label, value="") -%}
+  <label class="" for="{{ name }}">{{ label }}</label>
+  <div class="">
+    <textarea id="{{ name }}" class="" rows="3" name="{{ name }}">{{ value }}</textarea>
+  </div>
+{% endmacro %}
+
+
+{% macro multiple(name, label, field) -%}
+  <label class="" for="{{ name }}">{{ label }}</label>
+  <div class="">
+    <select id="{{ name }}" name="{{ name }}" class="" multiple="multiple">
+      {% for option in field %}
+	{{ option }}
+      {% endfor %}
+    </select>
+  </div>
+{% endmacro %}

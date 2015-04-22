@@ -1,0 +1,17 @@
+{% extends "admin/base.html" %}
+{% from "_macros.html" import render_field %}
+
+{% block content %}
+<form action="{{ url_for('admin.edit_user', uuid=item.id) }}" method="post">
+  {{ form.csrf_token }}
+  <input type="hidden" id="uuid" name="uuid" value="{{ item.id }}" />
+  {{ render_field(form.username, value=item.username) }}
+  {{ render_field(form.email, value=item.email) }}
+  <label>Administrator
+    <input type="checkbox" id="is_staff" name="is_staff" {% if item.is_staff %}checked{% endif %} />
+  </label>
+  {{ render_field(form.password) }}
+  {{ render_field(form.password_confirm) }}
+  <input type="submit" class="button" value="Update">
+</form>
+{% endblock content %}

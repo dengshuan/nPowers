@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <form action="{{ url_for('feedback') }}" method="post">
+    {{ form.csrf_token }}
+    {% if g.user.is_authenticated() %}
+      <input name="username" type="hidden" value="{{ g.user.username }}"/>
+      <input name="email" type="hidden" value="{{ g.user.email }}"/>
+    {% else %}
+      {{ form.username.label }}
+      {{ form.username }}
+      {{ form.email.label }}
+      {{ form.email }}
+    {% endif %}
+    {{ form.content.label }} {{ form.content }}
+    <input class="button" type="submit" value="Submit"/>
+  </form>
+{% endblock content %}

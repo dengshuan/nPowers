@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% from "_macros.html" import nav_link %}
+{% set active_page = "manage" %}
+
+{% block sidebar %}
+  <div class="panel">
+    <ul class="side-nav">
+      {% with collections = ['site', 'user', 'tag', 'power'] %}
+	{% for c in collections %}
+	  {{ nav_link(collection, c, 'admin.manage', c, collection=c) }}
+	{% endfor %}
+      {% endwith %}
+    </ul>
+  </div>
+  <div class="panel">
+    <a href="{{ url_for('admin.add' + '_' + collection) }}" class="button">Add</a>
+  </div>
+{% endblock sidebar %}
+
+{% block content %}
+  {% if object_list %}
+    <table>
+      <thead>
+	<tr>
+	  <th>Id</th>
+	  <th>Name</th>
+	  <th>URL</th>
+	  <th>Introduction</th>
+	</tr>
+      </thead>
+      <tbody>
+	{% for object in object_list %}
+	  <tr>
+	    <td>
+	      <a href="{{ url_for('admin.edit'+'_'+collection, uuid=object.id) }}">
+		{{ object.id }}
+	      </a>
+	    </td>
+	    <td>
+	      {% if object.name %}
+		{{ object.name }}
+	      {% elif object.username %}
+		{{ object.username }}
+	      {% endif %}
+	    </td>
+	    <td>{{ object.url }}</td>
+	    <td>{{ object.intro|truncate(40) }}</td>
+	  </tr>
+	{% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    No {{ collection }} yet, please click "Add" button to add one.
+  {% endif %}
+
+  <div class="row pagination-centered">
+    <ul class="pagination">
+      <li><a href="">&laquo;</a></li>
+      {% for p in range(10) %}
+	<li><a href="">{{ p }}</a></li>
+      {% endfor %}
+      <li><a href="">&raquo;</a></li>
+    </ul>
+  </div>
+{% endblock content %}
+
+
+{% block extra_js %}
+  <script type="text/javascript" src="{{ url_for('static', filename='js/upload.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/select.js') }}"></script>
+{% endblock %}

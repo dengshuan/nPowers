@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% from "_macros.html" import render_field %}
+
+{% block content %}
+  <label>Upload Image</label>
+  <form id="upload-form">
+    <input type="file" id="upload-file" name="file" />
+  </form>
+  <div class="hide" id="uploading">
+    <input type="button" id="upload" class="button" name="upload" value="Upload" />
+    <div class="progress"><span id="progressbar" class="meter" style="width:0%">0%</span></div>
+  </div>
+  <div class="thumbnail"><img src="" id="thumbnail" class="hide"/></div>
+  <form action="{{ url_for('site.add') }}" method="post">
+    {{ form.hidden_tag() }}
+    {{ render_field(form.name) }}
+    {{ render_field(form.url) }}
+    {{ render_field(form.intro) }}
+    {{ render_field(form.powers) }}
+    <input type="submit" class="button" value="Submit" />
+  </form>
+{% endblock %}

@@ -1,0 +1,118 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Site Powered by | nPowers</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/foundation.css') }}" />
+    <script src="{{ url_for('static', filename='js/modernizr.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ihover.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/site.css') }}">
+  </head>
+
+  <body>
+    {# topbar #}
+    <div class="fixed">
+      <nav class="top-bar" data-topbar role="navigation">
+	<ul class="title-area">
+	  <li class="name">
+	    <h1><a href="{{ url_for('index') }}">nPowers</a></h1>
+	  </li>
+	  <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
+	</ul>
+	<section class="top-bar-section">
+	  {% from "_macros.html" import nav_link -%}
+	  {# Left Nav Section #}
+	  <ul class="left">
+	    <li class="divider"></li>
+	    {{ nav_link(active_page, 'site', 'site.show_sites', 'Site') }}
+	    <li class="divider"></li>
+	    {% with nav_tags = [
+		('language', 'Language'),
+		('frontend-framework', 'Frontend Framework'),
+		('backend-framework', 'Backend Framework'),
+		('database', 'Database Server'),
+		('web-server', 'Web Server'),
+	    ] -%}
+	      {% for tag, caption in nav_tags %}
+		{{ nav_link(active_page, tag, 'power.tag', caption, slug=tag) }}
+	      {% endfor %}
+	    {% endwith %}
+	    {{ nav_link(active_page, 'all', 'power.tags', 'All') }}
+	  </ul>
+	  {# Right Nav Section #}
+	  <ul class="right">
+	    <li class="has-form">
+	      <div class="row collapse">
+		<div class="large-8 small-9 columns">
+		  <input type="text" placeholder="Search" />
+		</div>
+		<div class="large-4 small-3 columns">
+		  <a href="{{ url_for('search') }}" class="button expand">Go</a>
+		</div>
+	      </div>
+	    </li>
+	    {% if g.user.is_authenticated() %}
+	      {% if g.user.is_staff %}
+		{{ nav_link(active_page, 'manage', 'admin.manage', 'Manage', collection='site') }}
+	      {% endif %}
+	      {{ nav_link(active_page, 'profile', 'user.profile', g.user.username, userid=g.user.id) }}
+	      {{ nav_link(active_page, 'logout', 'user.logout', 'Logout') }}
+	    {% else %}
+	      {{ nav_link(active_page, 'login', 'user.login', 'Login') }}
+	      {{ nav_link(active_page, 'register', 'user.register', 'Register') }}
+	    {% endif %}
+	  </ul>
+	</section>
+      </nav>
+    </div>
+
+    <div class="row fullWidth">
+      <div class="large-3 columns">
+	{% block sidebar %}
+	  <div class="panel">
+	    <h4>Tips of the day</h4>
+	    <hr />
+	    find src/ -type f name "*.c" | xargs grep "function name"
+	  </div>
+	{% endblock sidebar %}
+      </div>
+      <div class="large-9 columns">
+	{#
+	{% from "_macros.html" import messages %}
+	{{ messages() }}
+#}
+	{% with messages = get_flashed_messages(with_categories=true) %}
+	  {% if messages %}
+	    {% for category, message in messages %}
+	      <div data-alert class="alert-box {{ category }} radius">
+		{{ message }}
+		<a class="close" href="#">&times;</a>
+	      </div>
+	    {% endfor %}
+	  {% endif %}
+	{% endwith %}
+
+	{% block content %}
+	  Sorry, no content right now.
+	{% endblock content %}
+      </div>
+    </div>
+
+    {% block footer %}
+      <footer class="row">
+	Powered by Flask MongoDB Foundation
+	<a href="{{ url_for('feedback') }}">Feedback</a>
+      </footer>
+    {% endblock footer %}
+
+    {# load JavaScript #}
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/foundation.min.js') }}"></script>
+    <script>
+    $(document).foundation();
+    </script>
+    {% block extra_js %}{% endblock %}    
+  </body>
+</html>

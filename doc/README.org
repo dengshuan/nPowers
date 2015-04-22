@@ -1,0 +1,65 @@
+* 介绍
+网站名字暂定为 nPowers，意为一个网站是由 n 种技术作支撑的。域名
+site-powered-by.com
+
+目标用户群是技术人员，作为他们在项目技术选型时的参考。
+
+核心是 Site + Power + User。Site 初期仅指网站，Power 指网站所使用的技
+术栈，User 是用户
+
+初期成本自己承担，有一定流量后借助广告担负
+
+* 功能
+网站管理员更新维护流行的技术栈(Power)数据库，用户提交某个网站的技术栈
+组成信息，网站提供分类导航和搜索功能，用户对技术进行点评功能。一个版块
+供用户对网站进行反馈(feedback)：添加新 power
+
+* 明细
+** 网站
+网站最好有截图，对于首页没有 flash 的网站可以用 phantomjs 抓取截图，用
+户也可以手动提交截图，允许用户提交没有技术栈信息的网站，在用户搜索
+site 时，告诉用户为其添加详细信息
+
+** 技术栈
+power 与 power 之间关系不大，所以没必要用关系型数据库。采用文档数据库
+MongoDB，给每种 Power 贴上标签，标签相当于分类，一种 Power 可以贴多个
+标签。例如 Flask，可以加上 language, backend-framework 标签。
+
+标签：language, framework, webserver, os, vps, cloud, library,
+developing tool, deploy tool, middleware, database
+
+** 用户
+由于面向技术人员，所以初期只从 github 导入用户，用户可以提交信息
+
+** 评论
+未登录用户可以参与对技术的评论，作为辅助信息，评论默认都是隐藏的，需要
+手动点开显示，评论有投票机制，票数超过3就默认予以显示，登录用户与未登
+录用户投票权重不一样
+
+** 反馈
+用户在反馈区提意见，要求增加新 tag、新 power，管理员负责维护 tag 和
+power
+
+* 实现
+Phantomjs + Celery + Foundation
+
+Nginx + gunicorn + Flask + MongoDB + MongoEngine
+
+Phantomjs 和 Celery 用来自动爬取 Site 信息
+
+前端特效可以用 ihover
+
+* extras
+个人技能点展示
+
+
+* TODO
+** DONE select 表单改为对用户友好的双栏
+** DONE 修改图片处理 ImageHandler
+** 添加编辑权限
+** DONE 检查表单验证情况
+** DONE 增加反馈页面
+** 修改各个页面显示样式
+** TODO 用户注册，邮件处理、重设密码
+** TODO 实现站内搜索
+** DONE 搜集信息，导入信息

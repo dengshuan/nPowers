@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% from "_macros.html" import render_field %}
+
+{% block content %}
+  <form action="{{ url_for('user.reset') }}" method="post">
+    {{ form.hidden_tag() }}
+    {{ render_field(form.email) }}
+    <input type="submit" class="button" value="Reset"/>
+  </form>
+{% endblock content %}

@@ -1,0 +1,57 @@
+{% extends "admin/base.html" %}
+{% from "_macros.html" import render_field, select_panel, hide_select %}
+
+{% block content %}
+<label>Upload Logo</label>
+<form id="upload-form">
+  <input type="file" id="upload-file" name="file" />
+</form>
+<div class="hide" id="uploading">
+  <input type="button" id="upload" class="button" name="upload" value="Upload" />
+  <div class="progress"><span id="progressbar" class="meter" style="width:0%">0%</span></div>
+</div>
+<div class="thumbnail"><img src="" id="thumbnail" class="hide"/></div>
+
+<form class="" action="{{ url_for('admin.add_power') }}" method="post">
+  {{ form.hidden_tag() }}
+  {{ render_field(form.name) }}
+  {{ render_field(form.url) }}
+  {{ render_field(form.intro) }}
+  {{ select_panel(form.tags.choices) }}
+  {{ hide_select("tags", form.tags.choices) }}
+  {#
+  <div class="row">
+    <div class="small-5 columns">
+      All Tags <input name="filter" type="text" value="" placeholder="type to search"/>
+    </div>
+    <div class="small-5 columns">
+      Tags <input name="filter" type="text" value="" placeholder="type to search"/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-5 columns">
+      <select id="from" size="20" multiple>
+	{% for value, text in form.tags.choices %}
+	  <option value="{{ value}}">{{ text }}</option>
+	{% endfor %}
+      </select>
+    </div>
+    <div class="small-2 columns">
+      <button type="button" id="add" title="Add">&gt;&gt;</button>
+      <button type="button" id="remove" title="Remove">&lt;&lt;</button>
+    </div>
+    <div class="small-5 columns">
+      <select id="to" multiple size="20"></select>
+    </div>
+  </div>
+  <div class="hide">
+    <select id="tags" name="tags" multiple>
+      {% for value, text in form.tags.choices %}
+	<option value="{{ value }}">{{ text }}</option>
+      {% endfor %}
+    </select>    
+  </div>
+#}
+  <input type="submit" class="button" value="Submit" />
+</form>
+{% endblock content %}

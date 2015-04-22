@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% set active_page = "all" %}
+
+{% block content %}
+  <div class="row">
+    {% for tag in tags %}
+      <a href="{{ url_for('power.tag', slug=tag.slug) }}">{{ tag.name }}</a>
+    {% endfor %}
+  </div>
+{% endblock %}

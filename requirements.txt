@@ -1,0 +1,19 @@
+Flask
+WTForms
+flask-WTF
+pymongo==2.8
+mongoengine
+flask-mongoengine
+bcrypt
+flask-bcrypt
+flask-cache
+python-slugify
+Flask-Login
+Flask-Mail
+Flask-Script
+Pillow
+gunicorn
+simplejson
+# for development
+flask-debugtoobar
+watchdog

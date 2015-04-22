@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block sidebar %}
+  <div class="panel">
+    <h4>Power Logo</h4>
+    {% if power.img %}
+          <a href="{{ power.url }}"><img src="{{ power.img|get_image }}"></a>
+      {% else %}
+          <a href="{{ power.url }}"><img src="{{ url_for('static', filename='img/1.jpg') }}"></a>
+    {% endif %}
+    <a href="{{ power.url }}">{{ power.url }}</a>
+    <br />
+    {% for tag in power.tags %}
+      <span class="label info">
+	<a href="{{ url_for('power.tag', slug=tag.slug) }}">{{ tag.name }}</a>	
+      </span>
+    {% endfor %}
+  </div>
+  <div class="panel">
+    <h4>Introduction</h4>
+    {{ power.intro }}
+    <hr />
+    <ul class="inline-list">
+      {% for link in power.links %}
+	<li><a href="{{ link.url }}">{{ link.url }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <ul class="clearing-thumbs small-block-grid-3">
+      {% for site in sites %}
+	<li>
+	  <div class="ih-item square effect6 from_top_and_bottom">
+	    <a href="{{ url_for('site.detail', slug=site.slug) }}">
+	      <div class="img">
+		<img{% if site.img %} src="{{ site.img|get_image }}"{% else %} src="{{ url_for('static', filename='img/1.jpg') }}"{% endif %} alt="{{ site.name }}">
+	      </div>
+	      <div class="info">
+		<h3>{{ site.name }}</h3>
+		<p>Introduction</p>
+	      </div>
+	    </a>
+	  </div>
+	</li>
+      {% endfor %}
+    </ul>
+  </div>
+  
+  <p>Comments:
+    {% for comment in power.comments %}
+      <div class="panel panel-default">
+	{{ comment.content }}
+	<div class="datetime">{{ comment.created|format_time }}</div> by @{{ comment.author.username }}
+      </div>
+    {% endfor %}
+  </p>
+
+    <form action="{{ url_for('power.comment', power_id=power.id) }}" method="post">
+      {{ form.hidden_tag() }}
+      {% if g.user.is_authenticated() %}
+	<input type="hidden" id="author" name="author" value="{{ g.user.id }}" />
+      {% else %}
+	Comment as <input name="author" type="text" value="" id="author"/>
+      {% endif %}
+      {{ form.content }}
+      <input type="submit" class="button" value="Submit" />
+    </form>
+
+  <div class="row pagination-centered">
+    <ul class="pagination">
+      <li><a href="">&laquo;</a></li>
+      {% for p in range(10) %}
+	<li><a href="">{{ p }}</a></li>
+      {% endfor %}
+      <li><a href="">&raquo;</a></li>
+    </ul>
+  </div>
+{% endblock %}

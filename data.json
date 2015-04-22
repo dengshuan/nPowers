@@ -1,0 +1,925 @@
+{
+    "tag": [
+	"Language",
+	"Database",
+	"Web Server",
+	"Frontend Framework",
+	"Backend Framework",
+	"OS",
+	"Python",
+	"Ruby",
+	"PHP",
+	"Go",
+	"Java",
+	"JavaScript",
+	"Nodejs",
+	"jQuery",
+	"Linux",
+	"Windows",
+	"CSS",
+	"Template Engine",
+	"Wiki",
+	"CMS",
+	"Forum",
+	"Django",
+	"Flask",
+	"NoSQL",
+	"ORM",
+	"Documentation"
+    ],
+    "power": [
+	{
+	    "name": "Python",
+	    "url": "https://www.python.org",
+	    "intro": "Python is an easy to learn, powerful programming language. It has efficient high-level data structures and a simple but effective approach to object-oriented programming.",
+	    "tags": [
+		"Language"
+	    ]
+	},
+	{
+	    "name": "PHP",
+	    "url": "http://www.php.net",
+	    "intro": "PHP is a popular general-purpose scripting language that is especially suited to web development",
+	    "tags": [
+		"Language"
+	    ]
+	},
+	{
+	    "name": "Java",
+	    "url": "http://www.java.com",
+	    "intro": "Java is a general-purpose computer programming language that is concurrent, class-based, object-oriented, and specifically designed to have as few implementation dependencies as possible",
+	    "tags": [
+		"Language"
+	    ]
+	},
+	{
+	    "name": "C#",
+	    "url": "https://msdn.microsoft.com/en-us/library/aa288436(v=vs.71).aspx",
+	    "intro": "",
+	    "tags": [
+		"Windows",
+		"Language"
+	    ]
+	},
+	{
+	    "name": "Golang",
+	    "url": "http://golang.org",
+	    "intro": "Go is an open source programming language that makes it easy to build simple, reliable, and efficient software",
+	    "tags": [
+		"Language"
+	    ]
+	},
+	{
+	    "name": "Ruby",
+	    "url": "https://www.ruby-lang.org",
+	    "intro": "Ruby is a dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write",
+	    "tags": [
+		"Language"
+	    ]
+	},
+	{
+	    "name": "Scala",
+	    "url": "http://www.scala-lang.org",
+	    "intro": "",
+	    "tags": [
+		"Language"
+	    ]
+	},
+	{
+	    "name": "Nodejs",
+	    "url": "http://nodejs.org",
+	    "intro": "Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices",
+	    "tags": [
+		"Language"
+	    ]
+	},
+	{
+	    "name": "Erlang",
+	    "url": "http://www.erlang.org",
+	    "intro": "Erlang is a programming language used to build massively scalable soft real-time systems with requirements on high availability. Some of its uses are in telecoms, banking, e-commerce, computer telephony and instant messaging. Erlang's runtime system has built-in support for concurrency, distribution and fault tolerance.",
+	    "tags": [
+		"Language"
+	    ]
+	},
+	{
+	    "name": "CoffeeScript",
+	    "url": "http://coffeescript.org",
+	    "intro": "CoffeeScript is a little language that compiles to JavaScript",
+	    "tags": [
+		"Language",
+		"JavaScript"
+	    ]
+	},
+	{
+	    "name": "TypeScript",
+	    "url": "http://www.typescriptlang.org",
+	    "intro": "TypeScript is a language for application-scale JavaScript. TypeScript adds optional types, classes, and modules to JavaScript. TypeScript supports tools for large-scale JavaScript applications for any browser, for any host, on any OS. TypeScript compiles to readable, standards-based JavaScript.",
+	    "tags": [
+		"JavaScript",
+		"Language"
+	    ]
+	},
+	{
+	    "name": "Rust",
+	    "url": "http://www.rust-lang.org",
+	    "intro": "Rust is a systems programming language that runs blazingly fast, prevents almost all crashes, and eliminates data races.",
+	    "tags": [
+		"Language"
+	    ]
+	},
+	{
+	    "name": "Dart",
+	    "url": "https://www.dartlang.org",
+	    "intro": "Dart is a cohensive, scalable platform for building apps that run on the web or on servers. Use the Dart language, libraries, and tools to write anything from simple scripts to full-featured apps.",
+	    "tags": [
+		"Language",
+		"JavaScript"
+	    ]
+	},
+	{
+	    "name": "Clojure",
+	    "url": "http://clojure.org",
+	    "intro": "Clojure is a dynamic programming language that targets the Java Virtual Machine. It is designed to be a general-purpose language, combining the approachability and interactive development of a scripting language with an efficient and robust infrastructure for multithread programming.",
+	    "tags": [
+		"Language",
+		"Java"
+	    ]
+	},
+	{
+	    "name": "Perl",
+	    "url": "http://www.perl.org",
+	    "intro": "Perl is a general-purpose programming language originally developed for text manipulation and now used for a wide range of tasks including system administration, web development, network programming, GUI development, and more",
+	    "tags": [
+		"Language"
+	    ]
+	},
+	{
+	    "name": "Lua",
+	    "url": "http://www.lua.org",
+	    "intro": "Lua is a powerful, fast, lightweight, embeddable scripting language",
+	    "tags": [
+		"Language"
+	    ]
+	},
+	{
+	    "name": "Haskell",
+	    "url": "https://www.haskell.org",
+	    "intro": "Haskell is an advanced purely-functional programming language",
+	    "tags": [
+		"Language"
+	    ]
+	},
+	{
+	    "name": "Apache",
+	    "url": "http://httpd.apache.org",
+	    "intro": "The Apache HTTP Server is a robust, commercial-grade, featureful, and freely-available source code implementation of an HTTP(Web) Server.",
+	    "tags": [
+		"Web Server"
+	    ]
+	},
+	{
+	    "name": "Nginx",
+	    "url": "http://nginx.org",
+	    "intro": "Nginx [engine x] is an HTTP and reverse proxy server, as well as a mail proxy server.",
+	    "tags": [
+		"Web Server"
+	    ]
+	},
+	{
+	    "name": "lighttpd",
+	    "url": "http://www.lighttpd.net",
+	    "intro": "Lighttpd (pron. lighty)is a secure, fast, complicant, and very flexible web-server that has been optimized for high performance environments. It has very low memory footprint compared to other webservers and takes care of cpu-load. Its advanced feature-set(FastCGI, CGI, Auth, Output-Compression, URL-Rewriting and many more) make lighttpd the perfect webserver-software for every server that suffers load problems",
+	    "tags": [
+		"Web Server"
+	    ]
+	},
+	{
+	    "name": "IIS",
+	    "url": "http://www.iis.net",
+	    "intro": "Internet Information Services (IIS) for Windows is a flexible, secure and manageable Web server for hosting anything on the web. From media streaming to web applications, IIS's scalable and open architecture is ready to handle the most demanding tasks.",
+	    "tags": [
+		"Web Server",
+		"Windows"
+	    ]
+	},
+	{
+	    "name": "Gunicorn",
+	    "url": "http://gunicorn.org",
+	    "intro": "Gunicorn 'Green Unicorn is a Python, WSGI HTTP Server for UNIX. It's a pre-fork worker model proted from Ruby's Unicorn project. The Gunicore server is broadly compatible with various web frameworks, simply implemented, light on server resources, and fairly speedy.",
+	    "tags": [
+		"Web Server",
+		"Python"
+	    ]
+	},
+	{
+	    "name": "FreeBSD",
+	    "url": "http://www.freebsd.org",
+	    "intro": "FreeBSD is an advanced computer operating system used to power modern servers, desktops and embedded platforms. A large community has continually developed it for more than thirty years. Its advanced networking, security and storage features have made FreeBSD the platform of choice for many of the busiest web sites and most pervasive embedded networking and storage devices",
+	    "tags": [
+		"OS"
+	    ]
+	},
+	{
+	    "name": "Red Hat Enterprise Linux Server",
+	    "url": "http://www.redhat.com",
+	    "intro": "",
+	    "tags": [
+		"OS",
+		"Linux"
+	    ]
+	},
+	{
+	    "name": "Debian",
+	    "url": "https://www.debian.org",
+	    "intro": "Debian is a free operating system (OS) for your computer. Debian provides more than a pure OS: it comes with over 37500 packages, precompiled software bundled up in a nice format for easy installation on your machine",
+	    "tags": [
+		"OS",
+		"Linux"
+	    ]
+	},
+	{
+	    "name": "Ubuntu",
+	    "url": "http://www.ubuntu.com",
+	    "intro": "",
+	    "tags": [
+		"OS",
+		"Linux"
+	    ]
+	},
+	{
+	    "name": "CentOS",
+	    "url": "http://centos.org",
+	    "intro": "The CentOS Linux Distribution is a stable, predictable, manageable and reproduceable platform derived from the sources for Red Hat Enterprise Linux (RHEL)",
+	    "tags": [
+		"OS",
+		"Linux"
+	    ]
+	},
+	{
+	    "name": "Windows Server",
+	    "url": "http://www.microsoft.com/en-us/server-cloud/products/windows-server-2012-r2/default.aspx",
+	    "intro": "",
+	    "tags": [
+		"OS",
+		"Windows"
+	    ]
+	},
+	{
+	    "name": "PostGreSQL",
+	    "url": "http://www.postgresql.com",
+	    "intro": "PostgreSQL is a powerful, open source object-relational database management system (ORDBMS)",
+	    "tags": [
+		"Database"
+	    ]
+	},
+	{
+	    "name": "MongoDB",
+	    "url": "https://www.mongodb.org",
+	    "intro": "MongoDB is an open-source document database that provides high performance, high availability, and automatic scaling.",
+	    "tags": [
+		"Database"
+	    ]
+	},
+	{
+	    "name": "RethinkDB",
+	    "url": "http://www.rethinkdb.com",
+	    "intro": "RethinkDB is an open-source, distributed database built to store JSON documents and effortlessly scale to multiple servers. It's easy to set up and learn and features a simple but powerful query language that supports table joins, groupings, aggregations, and functions.",
+	    "tags": [
+		"Database",
+		"NoSQL"
+	    ]
+	},
+	{
+	    "name": "MySQL",
+	    "url": "http://www.mysql.com",
+	    "intro": "The MySQL software delivers a fast, multi-threaded, multi-user, and robust SQL database server. MySQL Server is intended for mission-critical, heavy-load production systems as well as for embedding into mass-deployed software.",
+	    "tags": [
+		"Database"
+	    ]
+	},
+	{
+	    "name": "Oracle",
+	    "url": "http://www.oracle.com",
+	    "intro": "https://shop.oracle.com/pls/ostore/product?p1=OracleDatabase&p2=&p3=&p4=",
+	    "tags": [
+		"Database"
+	    ]
+	},
+	{
+	    "name": "MariaDB",
+	    "url": "https://mariadb.org",
+	    "intro": "MariaDB is a drop-in replacement for MySQL",
+	    "tags": [
+		"Database"
+	    ]
+	},
+	{
+	    "name": "Redis",
+	    "url": "http://redis.io",
+	    "intro": "Redis is an open source, BSD licensed, advanced key-value cache and store.",
+	    "tags": [
+		"Database"
+	    ]
+	},
+	{
+	    "name": "Memcached",
+	    "url": "http://memcached.org",
+	    "intro": "Free & open source, high-performance, distributed memory object caching system, generic in nature, but intended for use in speeding up dynamic web applications by alleviating database load.",
+	    "tags": [
+		"Database"
+	    ]
+	},
+	{
+	    "name": "SQL Server",
+	    "url": "http://www.microsoft.com/en-us/server-cloud/products/sql-server",
+	    "intro": "",
+	    "tags": [
+		"Database",
+		"Windows"
+	    ]
+	},
+	{
+	    "name": "DigitalOcean",
+	    "url": "https://www.digitalocean.com",
+	    "intro": "",
+	    "tags": [
+		"VPS"
+	    ]
+	},
+	{
+	    "name": "Linode",
+	    "url": "https://www.linode.com",
+	    "intro": "",
+	    "tags": [
+		"VPS"
+	    ]
+	},
+	{
+	    "name": "Bootstrap",
+	    "url": "http://www.getbootstrap.com",
+	    "intro": "Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web",
+	    "tags": [
+		"Frontend Framework"
+	    ]
+	},
+	{
+	    "name": "Foundation",
+	    "url": "http://foundation.zurb.com",
+	    "intro": "Foundation is the most advanced responsive front-end framework in the world.",
+	    "tags": [
+		"Frontend Framework"
+	    ]
+	},
+	{
+	    "name": "AngularJS",
+	    "url": "https://angularjs.org",
+	    "intro": "",
+	    "tags": [
+		"Frontend Framework",
+		"JavaScript"
+	    ]
+	},
+	{
+	    "name": "Backbone",
+	    "url": "http://backbonejs.org",
+	    "intro": "Backbone.js gives structure to web applications by providing models with key-value binding and custom events, collections with a rich API of enumerable functions, views with declarative event handling, and connects it all to your existing API over a RESTful JSON interface.",
+	    "tags": [
+		"Frontend Framework",
+		"JavaScript"
+	    ]
+	},
+	{
+	    "name": "Ember.js",
+	    "url": "http://emberjs.com",
+	    "intro": "A framework for creating ambitious web applications",
+	    "tags": [
+		"Frontend Framework",
+		"JavaScript"
+	    ]
+	},
+	{
+	    "name": "Knockout",
+	    "url": "http://knockoutjs.com",
+	    "intro": "Knockout is a JavaScript library that helps you to create rich, responsive display and editor user interfaces with a clean underlying data model. Any time you have sections of UI that update dynamically (e.g., changing depending on the user’s actions or when an external data source changes), KO can help you implement it more simply and maintainably.",
+	    "tags": [
+		"Frontend Framework",
+		"JavaScript"
+	    ]
+	},
+	{
+	    "name": "Dojo",
+	    "url": "http://dojotoolkit.org",
+	    "intro": "",
+	    "tags": [
+		"JavaScript"
+	    ]
+	},
+	{
+	    "name": "jQuery",
+	    "url": "https://jquery.com",
+	    "intro": "jQuery is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers. With a combination of versatility and extensibility, jQuery has changed the way that millions of people write JavaScript.",
+	    "tags": [
+		"JavaScript"
+	    ]
+	},
+	{
+	    "name": "UIkit",
+	    "url": "http://getuikit.com",
+	    "intro": "A lightweight and modular front-end framework for developing fast and powerful web interfaces.",
+	    "tags": [
+		"Frontend Framework"
+	    ]
+	},
+	{
+	    "name": "Django",
+	    "url": "https://www.djangoproject.com",
+	    "intro": "Django was invented to meet fast-moving newsroom deadlines, while satisfying the tough requirements of experienced Web developers.",
+	    "tags": [
+		"Backend Framework",
+		"Python"
+	    ]
+	},
+	{
+	    "name": "Ruby on Rails",
+	    "url": "http://rubyonrails.org",
+	    "intro": "Ruby on Rails® is an open-source web framework that’s optimized for programmer happiness and sustainable productivity. It lets you write beautiful code by favoring convention over configuration.",
+	    "tags": [
+		"Backend Framework",
+		"Ruby"
+	    ]
+	},
+	{
+	    "name": "Flask",
+	    "url": "http://flask.pocoo.org",
+	    "intro": "Flask is a microframework for Python based on Werkzeug, Jinja 2 and good intentions.",
+	    "tags": [
+		"Backend Framework",
+		"Python"
+	    ]
+	},
+	{
+	    "name": "Pylons",
+	    "url": "http://www.pylonsproject.org",
+	    "intro": "",
+	    "tags": [
+		"Backend Framework",
+		"Python"
+	    ]
+	},
+	{
+	    "name": "Tornado",
+	    "url": "http://www.tornadoweb.org",
+	    "intro": "Tornado is a Python web framework and asynchronous networking library, originally developed at FriendFeed. By using non-blocking network I/O, Tornado can scale to tens of thousands of open connections, making it ideal for long polling, WebSockets, and other applications that require a long-lived connection to each user.",
+	    "tags": [
+		"Backend Framework",
+		"Python"
+	    ]
+	},
+	{
+	    "name": "Laravel",
+	    "url": "http://laravel.com",
+	    "intro": "Laravel is a web application framework with expressive, elegant syntax. Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications.",
+	    "tags": [
+		"Backend Framework",
+		"PHP"
+	    ]
+	},
+	{
+	    "name": "Phalcon",
+	    "url": "http://phalconphp.com",
+	    "intro": "Phalcon is a web framework implemented as a C extension offering high performance and lower resource consumption",
+	    "tags": [
+		"PHP",
+		"Backend Framework"
+	    ]
+	},
+	{
+	    "name": "Symfony2",
+	    "url": "http://symfony.com",
+	    "intro": "Symfony is a set of PHP Components, a Web Application framework, a Philosophy, and a Community — all working together in harmony.",
+	    "tags": [
+		"PHP",
+		"Backend Framework"
+	    ]
+	},
+	{
+	    "name": "Express",
+	    "url": "http://expressjs.com",
+	    "intro": "Express is a fast, unopinionated, minimalist web framework for Node.js",
+	    "tags": [
+		"Nodejs",
+		"Backend Framework"
+	    ]
+	},
+	{
+	    "name": "koa",
+	    "url": "http://koajs.com",
+	    "intro": "Koa is a new web framework designed by the team behind Express, which aims to be a smaller, more expressive, and more robust foundation for web applications and APIs. Through leveraging generators Koa allows you to ditch callbacks and greatly increase error-handling. Koa does not bundle any middleware within core, and provides an elegant suite of methods that make writing servers fast and enjoyable.",
+	    "tags": [
+		"Nodejs",
+		"Backend Framework"
+	    ]
+	},
+	{
+	    "name": "Yii",
+	    "url": "http://www.yiiframework.com",
+	    "intro": "Yii is a high-performance PHP framework best for developing Web 2.0 applications.",
+	    "tags": [
+		"PHP",
+		"Backend Framework"
+	    ]
+	},
+	{
+	    "name": "CodeIgniter",
+	    "url": "http://www.codeigniter.com",
+	    "intro": "CodeIgniter is a powerful PHP framework with a very small footprint, built for developers who need a simple and elegant toolkit to create full-featured web applications.",
+	    "tags": [
+		"PHP",
+		"Backend Framework"
+	    ]
+	},
+	{
+	    "name": "Zend",
+	    "url": "http://framework.zend.com",
+	    "intro": "Zend Framework 2 is an open source framework for developing web applications and services using PHP 5.3+. Zend Framework 2 uses 100% object-oriented code and utilises most of the new features of PHP 5.3, namely namespaces, late static binding, lambda functions and closures.",
+	    "tags": [
+		"PHP",
+		"Backend Framework"
+	    ]
+	},
+	{
+	    "name": "Spring",
+	    "url": "http://spring.io",
+	    "intro": " Spring helps development teams everywhere build simple, portable, fast and flexible JVM-based systems and applications.",
+	    "tags": [
+		"Java",
+		"Backend Framework"
+	    ]
+	},
+	{
+	    "name": "ASP.NET",
+	    "url": "http://www.asp.net/",
+	    "intro": "ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript. You can also create Web APIs, mobile sites, use real-time technologies like Web Sockets and more!",
+	    "tags": [
+		".NET",
+		"Backend Framework"
+	    ]
+	},
+	{
+	    "name": "Apache Struts",
+	    "url": "http://struts.apache.org/",
+	    "intro": "Apache Struts is a free, open-source, MVC framework for creating elegant, modern Java web applications. It favors convention over configuration, is extensible using a plugin architecture, and ships with plugins to support REST, AJAX and JSON.",
+	    "tags": [
+		"Backend Framework",
+		"Java"
+	    ]
+	},
+	{
+	    "name": "Hibernate",
+	    "url": "http://hibernate.org",
+	    "intro": "",
+	    "tags": [
+		"Java",
+		"ORM"
+	    ]
+	},
+	{
+	    "name": "SQLAlchemy",
+	    "url": "http://www.sqlalchemy.org",
+	    "intro": "SQLAlchemy is the Python SQL toolkit and Object Relational Mapper that gives application developers the full power and flexibility of SQL.",
+	    "tags": [
+		"Python",
+		"ORM"
+	    ]
+	},
+	{
+	    "name": "Jinja2",
+	    "url": "http://jinja.pocoo.org",
+	    "intro": "Jinja2 is a full featured template engine for Python. It has full unicode support, an optional integrated sandboxed execution environment, widely used and BSD licensed",
+	    "tags": [
+		"Template Engine",
+		"Python"
+	    ]
+	},
+	{
+	    "name": "Mustache",
+	    "url": "http://mustache.github.io",
+	    "intro": "Logic-less templates, available almost in any languages",
+	    "tags": [
+		"Template Engine"
+	    ]
+	},
+	{
+	    "name": "Jade",
+	    "url": "http://jade-lang.com",
+	    "intro": "Jade is a high performance template engine heavily influenced by Haml and implemented with JavaScript for node and browsers.",
+	    "tags": [
+		"Template Engine",
+		"Nodejs"
+	    ]
+	},
+	{
+	    "name": "Twig",
+	    "url": "http://twig.sensionlabs.org",
+	    "intro": "The flexible, fast, and secure template engine for PHP",
+	    "tags": [
+		"Template Engine",
+		"PHP"
+	    ]
+	},
+	{
+	    "name": "Mako",
+	    "url": "http://www.makotemplates.org",
+	    "intro": "Mako is a template library written in Python. It provides a familiar, non-XML syntax which compiles into Python modules for maximum performance.",
+	    "tags": [
+		"Template Engine",
+		"Python"
+	    ]
+	},
+	{
+	    "name": "Haml",
+	    "url": "http://haml.info",
+	    "intro": "Haml is a templating engine for HTML. It's designed to make it both easier and more pleasant to write HTML documents, by eliminating redundancy, reflecting the underlying structure that the document represents, and providing an elegant syntax that's both powerful and easy to understand.",
+	    "tags": [
+		"Template Engine",
+		"Ruby"
+	    ]
+	},
+	{
+	    "name": "Liquid",
+	    "url": "http://liquidmarkup.org",
+	    "intro": "Liquid markup language. Safe, customer facing template language for flexible web apps.",
+	    "tags": [
+		"Template Engine",
+		"Ruby"
+	    ]
+	},
+	{
+	    "name": "WordPress",
+	    "url": "https://wordpress.org",
+	    "intro": "WordPress is a free and open-source blogging tool and a content management system (CMS) based on PHP and MySQL",
+	    "tags": [
+		"CMS",
+		"PHP"
+	    ]
+	},
+	{
+	    "name": "MoinMoin",
+	    "url": "https://moinmo.in",
+	    "intro": "MoinMoin is an advanced, easy to use and extensible WikiEngine with a large community of users",
+	    "tags": [
+		"Wiki",
+		"Python"
+	    ]
+	},
+	{
+	    "name": "DokuWiki",
+	    "url": "https://www.dokuwiki.org",
+	    "intro": "DokuWiki is a simple to use and highly versatile Open Source wiki software that doesn't require a database.",
+	    "tags": [
+		"Wiki",
+		"PHP"
+	    ]
+	},
+	{
+	    "name": "LocalWiki",
+	    "url": "https://localwiki.org",
+	    "intro": "LocalWiki is a grassroots effort to collect, share and open the world’s local knowledge.",
+	    "tags": [
+		"Wiki",
+		"Python"
+	    ]
+	},
+	{
+	    "name": "Zwiki",
+	    "url": "http://zwiki.org",
+	    "intro": "Zwiki is a powerful, innovative, user-friendly wiki engine, built on the Zope 2 application server",
+	    "tags": [
+		"Wiki",
+		"Python"
+	    ]
+	},
+	{
+	    "name": "MediaWiki",
+	    "url": "https://www.mediawiki.org",
+	    "intro": "MediaWiki is a free software open source wiki package written in PHP, originally for use on Wikipedia.",
+	    "tags": [
+		"Wiki",
+		"PHP"
+	    ]
+	},
+	{
+	    "name": "Jekyll",
+	    "url": "http://jekyllrb.com",
+	    "intro": "Jekyll is a simple, blog-aware, static site generator.",
+	    "tags": [
+		"Ruby",
+		"Static Site Generator"
+	    ]
+	},
+	{
+	    "name": "Hexo",
+	    "url": "https://hexo.io",
+	    "intro": "Hexo is a fast, simple & powerful blog framework powered by Node.js",
+	    "tags": [
+		"JavaScript",
+		"Static Site Generator",
+		"Nodejs"
+	    ]
+	},
+	{
+	    "name": "Octopress",
+	    "url": "http://octopress.org",
+	    "intro": "A blogging framework for hackers.",
+	    "tags": [
+		"Static Site Generator",
+		"Ruby"
+	    ]
+	},
+	{
+	    "name": "Pelican",
+	    "url": "http://blog.getpelican.com",
+	    "intro": "Pelican is a static site generator, written in Python, that requires no database or server-side logic.",
+	    "tags": [
+		"Static Site Generator",
+		"Python"
+	    ]
+	},
+	{
+	    "name": "Hyde",
+	    "url": "http://hyde.github.io",
+	    "intro": "Hyde is a static website generator written in python. While Hyde took life as awesome Jekyll's evil twin, it has since been completely consumed by the dark side and has an identity of its own.",
+	    "tags": [
+		"Static Site Generator",
+		"Python"
+	    ]
+	},
+	{
+	    "name": "Nikola",
+	    "url": "http://www.getnikola.com",
+	    "intro": "Nikola is a static site and blog generator.",
+	    "tags": [
+		"Static Site Generator",
+		"Python"
+	    ]
+	},
+	{
+	    "name": "Hugo",
+	    "url": "http://gohugo.io",
+	    "intro": "Hugo is a static site generator written in Go. It is optimized for speed, easy use and configurability. Hugo takes a directory with content and templates and renders them into a full HTML website.",
+	    "tags": [
+		"Static Site Generator",
+		"Go"
+	    ]
+	},
+	{
+	    "name": "phpBB",
+	    "url": "https://www.phpbb.com",
+	    "intro": "phpBB is a free flat-forum bulletin board software solution that can be used to stay in touch with a group of people or can power your entire website. With an extensive database of user-created modifications and styles database containing hundreds of style and image packages to customise your board, you can create a very unique forum in minutes.",
+	    "tags": [
+		"Forum",
+		"PHP"
+	    ]
+	},
+	{
+	    "name": "MyBB",
+	    "url": "http://www.mybb.com",
+	    "intro": "MyBB is a free and open source, community-based forum software project managed, developed, and supported by volunteers.",
+	    "tags": [
+		"Forum",
+		"PHP"
+	    ]
+	},
+	{
+	    "name": "NodeBB",
+	    "url": "https://nodebb.org",
+	    "intro": "NodeBB is a next-generation discussion platform that utilizes web sockets for instant interactions and real-time notifications. NodeBB forums have many modern features out of the box such as social network integration and streaming discussions.",
+	    "tags": [
+		"Forum",
+		"Nodejs"
+	    ]
+	},
+	{
+	    "name": "Discuz!",
+	    "url": "http://discuz.com",
+	    "intro": "",
+	    "tags": [
+		"Forum",
+		"PHP"
+	    ]
+	},
+	{
+	    "name": "Discourse",
+	    "url": "http://www.discourse.org",
+	    "intro": "Discourse is the 100% open source discussion platform built for the next decade of the Internet.",
+	    "tags": [
+		"Forum",
+		"Ruby"
+	    ]
+	},
+	{
+	    "name": "FluxBB",
+	    "url": "http://fluxbb.org",
+	    "intro": "FluxBB is fast, light, user-friendly forum software for your website.",
+	    "tags": [
+		"Forum",
+		"PHP"
+	    ]
+	},
+	{
+	    "name": "bbPress",
+	    "url": "http://bbpress.org",
+	    "intro": "bbPress is forum software with a twist from the creators of WordPress. Easily setup discussion forums inside your WordPress.org powered site.",
+	    "tags": [
+		"Forum",
+		"PHP"
+	    ]
+	},
+	{
+	    "name": "Python Sphinx",
+	    "url": "http://",
+	    "intro": "",
+	    "tags": [
+		"Documentation",
+		"Python"
+	    ]
+	}
+    ],
+    "site":
+    [
+	{
+	    "name": "Python Official site",
+	    "url": "https://www.python.org",
+	    "intro": "python's official site",
+	    "powers": [
+		"Python",
+		"Nginx",
+		"Django"
+	    ]
+	},
+	{
+	    "name": "PostgreSQL Official site",
+	    "url": "http://www.postgresql.org",
+	    "intro": "PostgreSQL official site",
+	    "powers": [
+		"Python",
+		"Lighttpd",
+		"Django"
+	    ]
+	},
+	{
+	    "name": "Ruby China",
+	    "url": "https://ruby-china.org",
+	    "intro": "Ruby China，对！没错！这里就是 Ruby 社区，目前这里已经是国内最权威的 Ruby 社区，拥有国内所有资深的 Ruby 工程师。",
+	    "powers": [
+		"Ruby",
+		"Ruby on Rails",
+		"Nginx",
+		"MongoDB",
+		"Memcached",
+		"Redis"
+	    ]
+	},
+	{
+	    "name": "Reddit",
+	    "url": "http://www.reddit.com",
+	    "intro": "Reddit /ˈrɛdɪt/, stylized as reddit, is an entertainment, social networking, and news website where registered community members can submit content, such as text posts or direct links. Registered users can then vote submissions 'up' or 'down' to organize the posts and determine their position on the site's pages. Content entries are organized by areas of interest called 'subreddits.'",
+	    "powers": [
+		"Python",
+		"PostgreSQL",
+		"Pylons"
+	    ]
+	},
+	{
+	    "name": "Python China",
+	    "url": "http://python-china.org",
+	    "intro": "Python 中文社区",
+	    "powers": [
+		"Flask",
+		"Nginx",
+		"Gunicorn",
+		"Bootstrap"
+	    ]
+	},
+	{
+	    "name": "F2E",
+	    "url": "http://f2e.im",
+	    "intro": "F2E is a community for front-end-developer",
+	    "powers": [
+		"Tornado",
+		"Jinja2",
+		"Nginx",
+		"MySQL"
+	    ]
+	},
+	{
+	    "name": "V2EX",
+	    "url": "https://www.v2ex.com",
+	    "intro": "V2EX是一个知名技术创意网站，由设计师、程序员及有创意的人参与的社区。它基于兴趣将用户创建的内容组织分类成不同“节点”，网站以内容的活跃程度决定在首页排序的位置。",
+	    "powers": [
+		"Tornado",
+		"Nginx"
+	    ]
+	}
+    ]
+}

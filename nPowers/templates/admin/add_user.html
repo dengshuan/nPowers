@@ -1,0 +1,14 @@
+{% extends "admin/base.html" %}
+{% from "_macros.html" import render_field %}
+
+{% block content %}
+<form action="{{ url_for('admin.add_user') }}" method="post">
+  {{ form.hidden_tag() }}
+  {{ render_field(form.username) }}
+  {{ render_field(form.email) }}
+  {{ render_field(form.is_staff) }}
+  {{ render_field(form.password) }}
+  {{ render_field(form.password_confirm) }}
+  <input type="submit" class="button" value="Submit">
+</form>  
+{% endblock content %}

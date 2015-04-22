@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% set active_page = tag_name %}
+{% block sidebar %}
+  
+{% endblock %}
+
+{% block content %}
+  {% for power in powers %}
+    {{ power.name }}
+  {% endfor %}
+{% endblock content %}
