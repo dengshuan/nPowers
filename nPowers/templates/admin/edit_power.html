@@ -3,17 +3,21 @@
 
 {% block content %}
 
-<label>Update Logo</label>
-<form id="upload-form">
-  <input type="file" id="upload-file" name="file" />
-</form>
-<div class="hide" id="uploading">
-  <input type="button" id="upload" class="button" name="upload" value="Upload" />
-  <div class="progress"><span id="progressbar" class="meter" style="width:0%">0%</span></div>
-</div>
-<div class="thumbnail">
-  <img src="{{ item.img|get_image }}" id="thumbnail"{% if not item.img %} class="hide" {% endif %}/>
-</div>
+  <label>Update Logo</label>
+  <form id="upload-form">
+    <input type="file" id="upload-file" name="file" />
+  </form>
+  <div class="hide" id="uploading">
+    <input type="button" id="upload" class="button" name="upload" value="Upload" />
+    <div class="progress"><span id="progressbar" class="meter" style="width:0%">0%</span></div>
+  </div>
+  <div class="thumbnail">
+    {% if item.img %}
+      <img src="{{ item.img|get_image }}" id="thumbnail" alt="{{ item.name }}" />
+    {% else %}
+      <img src="" id="thumbnail" class="hide" alt="{{ item.name }}" />
+    {% endif %}
+  </div>
 
 
 <form action="{{ url_for('admin.edit_power', uuid=item.id) }}" method="post">
