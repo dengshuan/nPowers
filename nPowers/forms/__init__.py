@@ -146,14 +146,17 @@ class LoginForm(RedirectForm):
 
 
 class RegisterForm(Form):
-    username = TextField(validators=[Required(),
-                                     Unique(User, User.username, message='Username exists!')])
-    email = TextField(validators=[Required(), Email(),
-                                  Unique(User, User.email,
-                                         message='There is already an account with this email.')])
+    username = TextField(
+        validators=[Required(),
+                    Unique(User, User.username, message='Username exists!')])
+    email = TextField(
+        validators=[Required(), Email(),
+                    Unique(User, User.email,
+                           message='There is already an account with this email.')])
     password = PasswordField(validators=[Required()])
-    confirm = PasswordField(validators=[Required(),
-                                        EqualTo('password', message='Passwords must match')])
+    confirm = PasswordField(
+        validators=[Required(),
+                    EqualTo('password', message='Passwords must match')])
 
 
 class EmailForm(Form):

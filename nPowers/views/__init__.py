@@ -1,10 +1,11 @@
 from flask import g, render_template, request, jsonify, url_for
 from flask.ext.login import login_required
 
-from nPowers import app, lm, cache
+from nPowers import app, lm
 from nPowers.models import Site, Power, Tag, User
 from nPowers.forms import FeedbackForm
 from nPowers.utils import ImageHandler
+
 
 @lm.user_loader
 def load_user(userid):
@@ -17,7 +18,8 @@ def index():
     sites = Site.objects
     powers = Power.objects
     tags = Tag.objects
-    return render_template('index.html', sites=sites, powers=powers, tags=tags, user=user)
+    return render_template('index.html', sites=sites,
+                           powers=powers, tags=tags, user=user)
 
 
 @app.route('/search')

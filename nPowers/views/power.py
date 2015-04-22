@@ -1,6 +1,5 @@
 from datetime import datetime
-from flask import url_for, g, redirect, Blueprint, request, render_template, flash
-from flask.views import View
+from flask import url_for, redirect, Blueprint, request, render_template, flash
 from flask.ext.login import login_required
 
 from nPowers.models import Power, Tag, Site, User, Comment
@@ -8,45 +7,6 @@ from nPowers.forms import CommentForm
 from nPowers.utils import flash_errors
 
 mod = Blueprint('power', __name__, url_prefix='/power')
-
-# class DetailView(View):
-#     def get_template(self):
-#         raise NotImplementedError()
-
-#     def get_object(self, slug):
-#         object = self.model.objects.get_or_404(slug=slug)
-#         return object
-    
-#     def dispatch_request(self, slug):
-#         return render_template(self.get_template(), **self.get_context_data(slug))
-
-
-# class PowerDetail(DetailView):
-#     model = Power
-#     def get_template(self):
-#         return 'power/detail.html'
-
-#     def get_context_data(self, slug):
-#         object = self.get_object(slug)
-#         sites = Site.objects(powers=object)
-#         context = {'object': object, 'sites': sites}
-#         return context
-
-
-# class TagDetail(DetailView):
-#     model = Tag
-#     def get_template(self):
-#         return 'power/tag.html'
-
-#     def get_context_data(self, slug):
-#         object = self.get_object(slug)
-#         powers = Power.objects(tags=object)
-#         context = {'object': object, 'powers': powers}
-#         return context
-
-    
-# mod.add_url_rule('/tag/<slug>', view_func=TagDetail.as_view('tag'))
-# mod.add_url_rule('/<slug>', view_func=PowerDetail.as_view('detail'))
 
 
 @mod.route('/<slug>')

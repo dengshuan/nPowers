@@ -1,6 +1,7 @@
 from datetime import datetime
 
-from flask import url_for, g, redirect, Blueprint, render_template, flash, request
+from flask import url_for, redirect, Blueprint,\
+    render_template, flash, request
 from flask.ext.login import login_required
 
 from nPowers.models import User, Site, Comment, Power, Tag
@@ -66,7 +67,7 @@ def edit(slug):
             return redirect(url_for('site.detail', slug=slug))
         else:
             return redirect(url_for('site.edit', slug=slug))
-                
+
 
 @mod.route('/add', methods=['GET', 'POST'])
 @login_required
@@ -82,10 +83,12 @@ def add():
             intro = form.intro.data
             power_ids = form.powers.data
             last_edit = datetime.now()
+            powers = []
             for pid in power_ids:
                 power = Power.objects.get_or_404(id=pid)
                 powers.append(power)
-            site = Site(name=name, url=url, intro=intro, powers=powers, last_edit=last_edit)
+            site = Site(name=name, url=url, intro=intro, powers=powers,
+                        last_edit=last_edit)
             site.save()
             flash("Site {} info add successfully!".format(name))
             return redirect(url_for('site.site', slug=site.slug))
@@ -111,7 +114,8 @@ def comment(site_id):
                                   created=datetime.now())
                 site.comments.append(comment)
                 site.save()
-            flash("Comment on site {} successfully!".format(site.name), 'success')
+            flash("Comment on site {} successfully!".format(site.name),
+                  'success')
             return redirect(url_for('site.detail', slug=site.slug))
         else:
             flash_errors(form)
