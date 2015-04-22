@@ -1,5 +1,5 @@
 from flask import Blueprint, request, redirect, url_for,\
-                  render_template, flash, abort
+                  render_template, flash, abort, g
 from flask.ext.login import login_user, logout_user
 from flask.ext.mail import Message
 
@@ -13,6 +13,8 @@ mod = Blueprint('user', __name__, url_prefix='/u')
 
 @mod.route('/login', methods=['POST', 'GET'])
 def login():
+    if g.user.is_authenticated():
+        return redirect(url_for('user.profile', userid=g.user.id))
     if request.method == 'GET':
         form = LoginForm()
     elif request.method == 'POST':
