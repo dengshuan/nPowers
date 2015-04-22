@@ -14,6 +14,7 @@ Flask-Script
 Pillow
 gunicorn
 simplejson
+celery
 # for development
-flask-debugtoobar
+Flask-DebugToolbar
 watchdog
