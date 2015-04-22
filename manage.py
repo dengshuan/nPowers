@@ -8,7 +8,7 @@ manager = Manager(app)
 
 
 @manager.command
-def initdb(data_file='sites.json'):
+def initdb(data_file='data.json'):
     "Initialize database."
     with open(data_file, 'r') as f:
         data = json.load(f)
