@@ -1,5 +1,6 @@
 from datetime import datetime
-from flask import url_for, redirect, Blueprint, request, render_template, flash
+from flask import url_for, redirect, Blueprint, request, \
+    render_template, flash
 from flask.ext.login import login_required
 
 from nPowers.models import Power, Tag, Site, User, Comment

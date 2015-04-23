@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "_macros.html" import vote_js %}
 
 {% set active_page = "site" %}
 
@@ -55,7 +56,9 @@
 
     <p>Comments:
       {% for comment in site.comments %}
-	<div class="panel panel-default">
+	<div class="panel panel-default" id="comment-{{loop.index0}}">
+	<a href="#" class="vote up"><i class="fa fa-thumbs-up"></i></a>
+	<a href="#" class="vote down"><i class="fa fa-thumbs-down"></i></a>
 	  {{ comment.content }}
 	  <div class="datetime">{{ comment.created|format_time }}</div> by @{{ comment.author.username }}
 	</div>
@@ -84,3 +87,7 @@
     </ul>
   </div>  
 {% endblock %}
+
+{% block extra_js %}
+  {{ vote_js("site", site) }}
+{% endblock extra_js %}

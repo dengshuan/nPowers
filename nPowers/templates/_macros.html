@@ -135,3 +135,30 @@
     </select>
   </div>
 {% endmacro %}
+
+
+{% macro vote_js(collection, item) %}
+  <script>
+  $("a.vote").click(function(evt) {
+    evt.preventDefault();
+    if ($(this).hasClass("vote")) {
+      var id = $(this).parent().attr("id").split("-")[1];
+      var url = "{{url_for('vote', collection=collection, item_id=item.id)}}";
+      var data = {cid: id, vote: 0};
+      if ($(this).hasClass('up')) {
+	data.vote = 1;
+      } else if($(this).hasClass('down')) {
+	data.vote = -1;
+      }
+      $.post(url, data, function(res) {
+	console.log(res);
+      }, "json");
+      $(this).removeClass("vote");
+      $(this).siblings().removeClass("vote");
+    } else {
+      alert("You've already voted on this comment!");
+      console.log("Though you can refresh page and vote again, \nthis is nonsense, please don't do this!")
+    }
+  });
+  </script>
+{% endmacro %}

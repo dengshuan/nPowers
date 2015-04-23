@@ -42,6 +42,7 @@ class Comment(db.EmbeddedDocument):
     created = db.DateTimeField(default=datetime.now, required=True)
     content = db.StringField(max_length=500, required=True)
     author = db.ReferenceField(User)
+    votes = db.FloatField(default=0)
 
 
 class Tag(db.Document):

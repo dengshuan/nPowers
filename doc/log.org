@@ -56,13 +56,17 @@ Phantomjs 和 Celery 用来自动爬取 Site 信息
 * TODO
 ** DONE select 表单改为对用户友好的双栏
 ** DONE 修改图片处理 ImageHandler
-** 添加编辑权限
+** DONE 添加编辑权限
 ** DONE 检查表单验证情况
 ** DONE 增加反馈页面
-** 修改各个页面显示样式
-** TODO 用户注册，邮件处理、重设密码
-** TODO 实现站内搜索
 ** DONE 搜集信息，导入信息
+
+** DONE 用户注册，邮件处理、重设密码
+** TODO Celery 处理邮件任务
+** DONE 评论投票
+** TODO 添加 useful links
+** TODO 修改各个页面显示样式
+** TODO 实现站内搜索
 
 
 * issues
@@ -79,3 +83,9 @@ Phantomjs 和 Celery 用来自动爬取 Site 信息
       tags = Tag.objects
       return render_template('index.html', sites=sites, powers=powers, tags=tags, user=user)
 #+END_SRC
+** 2015-04-22
+服务器上 mongodb 死活启动不起来，提示 ~Insufficient space for journal
+files~ 和 ~Please make at least 3379MB available in
+/var/lib/mongodb/journal or use --smallfiles~ ，查了下发现 MongoDB 要
+求磁盘空间至少有 4GB，而服务器上之前是作为境外资源下载中转站的，可用空
+间只剩2个多GB了，删除部分视频后解决

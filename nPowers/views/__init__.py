@@ -6,6 +6,8 @@ from nPowers.models import Site, Power, Tag, User
 from nPowers.forms import FeedbackForm
 from nPowers.utils import ImageHandler
 
+_COLLECTION = {'power': Power, 'site': Site}
+
 
 @lm.user_loader
 def load_user(userid):
@@ -54,3 +56,26 @@ def upload():
             'url': url_for('static', filename=relpath)
         }
         return jsonify(data)
+
+
+@app.route('/<collection>/<item_id>/vote', methods=['POST'])
+def vote(collection, item_id):
+    cid = int(request.form['cid'])
+    v = int(request.form['vote'])
+    u = g.user
+    w = 0
+    if u.is_anonymous():
+        w = app.config['WEIGHT'][0]
+    elif u.is_authenticated():
+        w = app.config['WEIGHT'][1]
+        if u.is_staff:
+            w = app.config['WEIGHT'][2]
+    Model = _COLLECTION.get(collection)
+    item = Model.objects.get_or_404(id=item_id)
+    item.comments[cid].votes += v * w
+    item.save()
+    data = {
+        'status': 'ok',
+        'message': 'vote %s on comment-%s' % (v, cid)
+    }
+    return jsonify(data)
