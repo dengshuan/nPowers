@@ -21,6 +21,7 @@ toolbar = DebugToolbarExtension(app)
 bcrypt = Bcrypt(app)
 mail = Mail(app)
 
+
 ts = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 
 
@@ -44,11 +45,14 @@ def unauthorized(error):
     return render_template('401.html'), 401
 
 
+# late import to avoid cycle import
 # import filters
+from nPowers.utils import make_celery
 from nPowers.utils.filters import get_image, get_ids, tell_square,\
     format_time, url_for_other_page
 
 app.jinja_env.globals['url_for_other_page'] = url_for_other_page
+celery = make_celery(app)
 
 from nPowers.views import user, site, power, admin
 from nPowers.views import index, search, feedback

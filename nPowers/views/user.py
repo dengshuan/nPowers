@@ -3,7 +3,8 @@ from flask import Blueprint, request, redirect, url_for,\
 from flask.ext.login import login_user, logout_user
 from flask.ext.mail import Message
 
-from nPowers import ts, mail
+from nPowers import ts
+from nPowers.views import send_mail
 from nPowers.models import User
 from nPowers.forms import LoginForm, RegisterForm, EmailForm, PasswordForm
 from nPowers.utils import flash_errors
@@ -54,10 +55,10 @@ def register():
             msg = Message(subject, sender='dengshuan_09@163.com',
                           recipients=[user.email])
             msg.html = html
-            mail.send(msg)
+            send_mail.apply_async((msg,))
             # login_user(user)
-            # flash('Congratulations {}, welcome!'.format(user.username),
-            #       'success')
+            flash('Nice work {}, please check your email to activate your account!'.format(user.username),
+                  'success')
             return redirect(url_for('index'))
     return render_template('user/register.html', form=form)
 
@@ -104,7 +105,7 @@ def reset():
             msg = Message(subject, sender='dengshuan_09@163.com',
                           recipients=[user.email])
             msg.html = html
-            mail.send(msg)
+            send_mail.apply_async((msg,))
             return redirect(url_for('user.login'))
     return render_template('user/reset.html', form=form)
 

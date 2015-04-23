@@ -62,7 +62,7 @@ Phantomjs 和 Celery 用来自动爬取 Site 信息
 ** DONE 搜集信息，导入信息
 
 ** DONE 用户注册，邮件处理、重设密码
-** TODO Celery 处理邮件任务
+** DONE Celery 处理邮件任务
 ** DONE 评论投票
 ** TODO 添加 useful links
 ** TODO 修改各个页面显示样式

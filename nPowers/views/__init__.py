@@ -1,7 +1,7 @@
 from flask import g, render_template, request, jsonify, url_for
 from flask.ext.login import login_required
 
-from nPowers import app, lm
+from nPowers import app, lm, celery, mail
 from nPowers.models import Site, Power, Tag, User
 from nPowers.forms import FeedbackForm
 from nPowers.utils import ImageHandler
@@ -12,6 +12,11 @@ _COLLECTION = {'power': Power, 'site': Site}
 @lm.user_loader
 def load_user(userid):
     return User.objects.with_id(userid)
+
+
+@celery.task()
+def send_mail(msg):
+    mail.send(msg)
 
 
 @app.route('/')
