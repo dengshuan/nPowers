@@ -3,7 +3,7 @@ from flask import request, url_for, redirect
 from flask.ext.wtf import Form
 from wtforms import TextField, TextAreaField, SelectMultipleField,\
     HiddenField, BooleanField, PasswordField
-from wtforms.validators import Required, URL, EqualTo, Email
+from wtforms.validators import Required, URL, EqualTo, Email, UUID
 
 from nPowers.models import User, Power, Tag, Site, Feedback
 from nPowers.utils.validators import Unique
@@ -20,7 +20,7 @@ class PowerForm(Form):
     name = TextField(validators=[Required()])
     intro = TextAreaField()
     url = TextField(validators=[Required(), URL()])
-    img = HiddenField()
+    img = HiddenField(validators=[UUID('Image upload error')])
     tags = SelectMultipleField(choices=choices)
 
     def save(self):
@@ -57,7 +57,7 @@ class SiteForm(Form):
     uuid = HiddenField()
     name = TextField(validators=[Required()])
     intro = TextAreaField()
-    img = HiddenField()
+    img = HiddenField(validators=[UUID('Image upload error')])
     url = TextField(validators=[Required(), URL()])
     powers = SelectMultipleField(choices=choices)
 
