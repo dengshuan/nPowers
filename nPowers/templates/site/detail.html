@@ -3,91 +3,93 @@
 
 {% set active_page = "site" %}
 
-{% block sidebar %}
-  <div class="panel">
-    <h4>{{ site.name }}</h4>
-    {% if site.img %}
-      <img src="{{ site.img|get_image }}" class="" alt="{{ site.name }}" />
-    {% else %}
-      <img src="{{ url_for('static', filename='img/1.jpg') }}" class="" alt="{{ site.name }}" />
-    {% endif %}
-    <p>{{ site.intro }}</p>
-    <p>
-      <a href="{{ site.url }}">
-	{{ site.url }}
-      </a>
-    </p>
-  </div>
-  {% if g.user.is_authenticated() %}
-  <div class="panel">
-    <a href="{{ url_for('site.edit', slug=site.slug) }}" class="button">Update</a>
-  </div>    
-  {% endif %}
-{% endblock %}
-
-
-{% block content %}
-  <div class="row">
-    <ul class="small-block-grid-3">
-      {% for power in site.powers %}
-	<li>
-	  <div class="ih-item circle effect13 bottom_to_top">
-	    <a href="{{ url_for('power.detail', slug=power.slug) }}">
-	      <div class="img">
-		{% if power.img %}
-		  <img src="{{ power.img|get_image }}">
-		{% else %}
-		  <img src="{{ url_for('static', filename='img/1.jpg') }}">
-		{% endif %}
-	      </div>
-	      <div class="info">
-		<h3>{{ power.name }}</h3>
-		<p>{{ power.intro|truncate(40) }}</p>
-	      </div>
-	    </a>
-	  </div>
-	</li>
-      {% endfor %}
-    </ul>
-
-    <div class="datetime">
-      Last edit:{{ site.last_edit|format_time }}      
-    </div>
-
-    <p>Comments:
-      {% for comment in site.comments %}
-	<div class="panel panel-default" id="comment-{{loop.index0}}">
-	<a href="#" class="vote up"><i class="fa fa-thumbs-up"></i></a>
-	<a href="#" class="vote down"><i class="fa fa-thumbs-down"></i></a>
-	  {{ comment.content }}
-	  <div class="datetime">{{ comment.created|format_time }}</div> by @{{ comment.author.username }}
-	</div>
-      {% endfor %}
-    </p>
-
-    <form action="{{ url_for('site.comment', site_id=site.id) }}" method="post">
-      {{ form.hidden_tag() }}
-      {% if g.user.is_authenticated() %}
-	<input type="hidden" id="author" name="author" value="{{ g.user.id }}" />
+  {% block sidebar %}
+    <div class="panel">
+      <h4>{{ site.name }}</h4>
+      {% if site.img %}
+	<img src="{{ site.img|get_image }}" class="" alt="{{ site.name }}" />
       {% else %}
-	Comment as <input name="author" type="text" value="" id="author"/>
+	<img src="{{ url_for('static', filename='img/1.jpg') }}" class="" alt="{{ site.name }}" />
       {% endif %}
-      {{ form.content }}
-      <input type="submit" class="button" value="Submit" />
-    </form>
-  </div>
-  
-  <div class="row pagination-centered">
-    <ul class="pagination">
-      <li><a href="">&laquo;</a></li>
-      {% for p in range(10) %}
-	<li><a href="">{{ p }}</a></li>
-      {% endfor %}
-      <li><a href="">&raquo;</a></li>
-    </ul>
-  </div>  
-{% endblock %}
+      <p>{{ site.intro }}</p>
+      <p>
+	<a href="{{ site.url }}">
+	  {{ site.url }}
+	</a>
+      </p>
+    </div>
+    {% if g.user.is_authenticated() %}
+      <div class="panel">
+	<a href="{{ url_for('site.edit', slug=site.slug) }}" class="button">Update</a>
+      </div>    
+    {% endif %}
+  {% endblock %}
 
-{% block extra_js %}
-  {{ vote_js("site", site) }}
-{% endblock extra_js %}
+
+  {% block content %}
+    <div class="row">
+      <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
+	{% for power in site.powers %}
+	  <li>
+	    <div class="ih-item circle effect13 bottom_to_top">
+	      <a href="{{ url_for('power.detail', slug=power.slug) }}">
+		<div class="img">
+		  {% if power.img %}
+		    <img src="{{ power.img|get_image }}">
+		  {% else %}
+		    <img src="{{ url_for('static', filename='img/1.jpg') }}">
+		  {% endif %}
+		</div>
+		<div class="info">
+		  <h3>{{ power.name }}</h3>
+		  <p>{{ power.intro|truncate(40) }}</p>
+		</div>
+	      </a>
+	    </div>
+	  </li>
+	{% endfor %}
+      </ul>
+
+      <div class="datetime">
+	Last edit:{{ site.last_edit|format_time }}      
+      </div>
+
+      <p>Comments:
+	{% for comment in site.comments %}
+	  <div class="panel panel-default" id="comment-{{loop.index0}}">
+	    <a href="#" class="vote up"><i class="fa fa-thumbs-up"></i></a>
+	    <a href="#" class="vote down"><i class="fa fa-thumbs-down"></i></a>
+	    {{ comment.content }}
+	    <div class="datetime">{{ comment.created|format_time }}</div> by @{{ comment.author.username }}
+	  </div>
+	{% endfor %}
+      </p>
+
+      <form action="{{ url_for('site.comment', site_id=site.id) }}" method="post">
+	{{ form.hidden_tag() }}
+	{% if g.user.is_authenticated() %}
+	  <input type="hidden" id="author" name="author" value="{{ g.user.id }}" />
+	{% else %}
+	  Comment as <input name="author" type="text" value="" id="author"/>
+	{% endif %}
+	{{ form.content }}
+	<input type="submit" class="button" value="Submit" />
+      </form>
+    </div>
+    
+    <div class="row pagination-centered">
+      <ul class="pagination">
+	<li><a href="">&laquo;</a></li>
+	{% for p in range(10) %}
+	  <li><a href="">{{ p }}</a></li>
+	{% endfor %}
+	<li><a href="">&raquo;</a></li>
+      </ul>
+    </div>  
+  {% endblock %}
+
+
+
+  {% block extra_js %}
+    {{ vote_js("site", site) }}
+  {% endblock extra_js %}

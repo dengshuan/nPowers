@@ -1,47 +1,42 @@
 {% extends "base.html" %}
+{% from "_macros.html" import render_pagination %}
+
 {% set active_page = "site" %}
 
-{% block sidebar %}
-  <div class="panel">
-    <h4>Famous Site</h4>
-  </div>
-  {% if g.user.is_authenticated() %}
+  {% block sidebar %}
     <div class="panel">
-      <a href="{{ url_for('site.add') }}" class="button">Add</a>
-    </div>    
-  {% endif %}
-{% endblock %}
+      <h4>Famous Site</h4>
+    </div>
+    {% if g.user.is_authenticated() %}
+      <div class="panel">
+	<a href="{{ url_for('site.add') }}" class="button">Add</a>
+      </div>    
+    {% endif %}
+  {% endblock sidebar %}
 
-{% block content %}
+  {% block content %}
     <div class="row">
-    <ul class="small-block-grid-3">
-      {% for site in sites %}
-	<li>
-	  <div class="ih-item square colored effect4">
-	    <a href="{{ url_for('site.detail', slug=site.slug) }}">
-	      <div class="img">
-		{% if site.img %}
-		  <img src="{{ site.img|get_image }}">
-		{% else %}
-		  <img src="{{ url_for('static', filename='img/1.jpg') }}">
-		{% endif %}
-	      </div>
-	      <div class="info">
-		<h3>{{ site.name }}</h3>
-		<p>{{ site.intro|truncate(45, True) }}</p>
-	      </div>
-	    </a>
-	  </div>
-	</li>
-      {% endfor %}
-    </ul>
-    <div class="row pagination-centered">
-      <ul class="pagination">
-	<li><a href="">&laquo;</a></li>
-	{% for p in range(10) %}
-	  <li><a href="">{{ p }}</a></li>
+      <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
+	{% for site in sites %}
+	  <li>
+	    <div class="ih-item square colored effect6">
+	      <a href="{{ url_for('site.detail', slug=site.slug) }}">
+		<div class="img">
+		  {% if site.img %}
+		    <img src="{{ site.img|get_image }}">
+		  {% else %}
+		    <img src="{{ url_for('static', filename='img/1.jpg') }}">
+		  {% endif %}
+		</div>
+		<div class="info">
+		  <h3>{{ site.name }}</h3>
+		  <p>{{ site.intro|truncate(45, True) }}</p>
+		</div>
+	      </a>
+	    </div>
+	  </li>
 	{% endfor %}
-	<li><a href="">&raquo;</a></li>
       </ul>
     </div>
-{% endblock %}
+    {{ render_pagination(pagination) }}
+  {% endblock %}

@@ -21,10 +21,16 @@ mod = Blueprint('site', __name__, url_prefix='/site')
 
 
 # mod.add_url_rule('/', view_func=SiteView.as_view('show_sites'))
-@mod.route('/')
-def show_sites():
-    sites = Site.objects
-    return render_template('site/list.html', sites=sites)
+@mod.route('/', defaults={'page': 1})
+@mod.route('/page/<int:page>')
+def show_sites(page):
+    per_page = 5
+    first = per_page * (page - 1)
+    last = first + per_page
+    sites = Site.objects.order_by('_id')[first:last]
+    pagination = Site.objects.paginate(page=page, per_page=per_page)
+    return render_template('site/list.html',
+                           sites=sites, pagination=pagination)
 
 
 @mod.route('/<slug>')
@@ -60,7 +66,7 @@ def edit(slug):
                 power = Power.objects.get(id=pid)
                 if power in site.powers:
                     continue
-                site.power.append(power)
+                site.powers.append(power)
             site.last_edit = datetime.now()
             site.save()
             flash("Site info update successfully!")

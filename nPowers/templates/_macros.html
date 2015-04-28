@@ -19,35 +19,47 @@
 {% endmacro %}
 
 {% macro render_pagination(pagination) %}
-  <div class="row pagination-centered">
-    <ul class="pagination">
-    {% if pagination.has_prev %}
-      <li class="arrow">
-	<a href="{{ url_for_other_page(pagination.page-1) }}">&laquo;</a>	
-      </li>
-    {% else %}
-      <li class="arrow unavailable"><a href="">&laquo;</a></li>
-    {% endif %}
-    {% for page in pagination.iter_pages() %}
-      {% if page %}
-	{% if page != pagination.page %}
-	  <li><a href="{{ url_for_other_page(page)}}">{{ page }}</a></li>
+  {% if pagination.has_prev or pagination.has_next %}
+    <div class="row pagination-centered">
+      <ul class="pagination">
+	{% if pagination.has_prev %}
+	  <li class="arrow">
+	    <a href="{{ url_for_other_page(pagination.page-1) }}">&laquo;</a>	
+	  </li>
 	{% else %}
-	  <li class="current"><a>{{ page }}</a></li>
+	  <li class="arrow unavailable"><a href="">&laquo;</a></li>
 	{% endif %}
-      {% else %}
-	<li class="unavailable"><a href="">&hellip;</a></li>
-      {% endif %}
-    {% endfor %}
-    {% if pagination.has_next %}
-      <li class="arrow">
-	<a href="{{ url_for_other_page(pagination.page+1) }}">&raquo;</a>	
-      </li>
-      {% else %}
-      <li class="arrow unavailable"><a href="">&raquo;</a></li>
-    {% endif %}
-    </ul>
-  </div>
+	{% for page in pagination.iter_pages() %}
+	  {% if page %}
+	    {% if page != pagination.page %}
+	      <li><a href="{{ url_for_other_page(page)}}">{{ page }}</a></li>
+	    {% else %}
+	      <li class="current"><a>{{ page }}</a></li>
+	    {% endif %}
+	  {% else %}
+	    <li class="unavailable"><a href="">&hellip;</a></li>
+	  {% endif %}
+	{% endfor %}
+	{% if pagination.has_next %}
+	  <li class="arrow">
+	    <a href="{{ url_for_other_page(pagination.page+1) }}">&raquo;</a>	
+	  </li>
+	{% else %}
+	  <li class="arrow unavailable"><a href="">&raquo;</a></li>
+	{% endif %}
+      </ul>
+    </div>
+  {% endif %}
+{% endmacro %}
+
+{% macro load_static(type, file) %}
+  {% if type == "js" %}
+    <script src="{{ url_for('static', filename=file) }}"></script>
+  {% elif type == "css" %}
+    <link href="{{ url_for('static', filename=file) }}" rel="stylesheet"/>
+  {% elif type == "img" %}
+    <img alt="" src="{{ url_for('static', filename=file) }}"/>
+  {% endif %}
 {% endmacro %}
 
 {% macro select_panel(choices, selected=none) %}

@@ -27,7 +27,7 @@
     {{ render_field(form.url, value=item.url) }}
     {{ textarea("intro", "Intro", value=item.intro) }}
     {{ select_panel(form.powers.choices, item.powers) }}
-    {{ hide_select("tags", form.powers.choices, item.powers) }}
+    {{ hide_select("powers", form.powers.choices, item.powers) }}
     <input type="submit" class="button" value="Update">
   </form>
 {% endblock %}

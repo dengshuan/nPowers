@@ -1,11 +1,10 @@
 {% extends "base.html" %}
-{% from "_macros.html" import render_pagination %}
 
 {% block sidebar %}
   <div class="panel">
     <h4>Tags</h4>
     {% for tag in tags %}
-      <span class="label info">
+      <span class="label info radius">
 	<a href="{{ url_for('power.tag', slug=tag.slug)}}">{{ tag.name }}</a>
       </span>
     {% endfor %}
@@ -13,20 +12,19 @@
   <div class="panel">
     <h4>Powers</h4>
     {% for power in powers %}
-      <span class="label info">
+      <span class="label info radius">
 	<a href="{{ url_for('power.detail', slug=power.slug) }}">{{ power.name }}</a>
       </span>
     {% endfor %}
   </div>
 {% endblock sidebar %}
 
-
 {% block content %}
   <div class="row">
-    <ul class="small-block-grid-3">
+    <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
       {% for site in sites %}
 	<li>
-	  <div class="ih-item square colored effect4">
+	  <div class="ih-item square colored effect6">
 	    <a href="{{ url_for('site.detail', slug=site.slug) }}">
 	      <div class="img">
 		{% if site.img %}
@@ -37,21 +35,12 @@
 	      </div>
 	      <div class="info">
 		<h3>{{ site.name }}</h3>
-		<p>{{ site.intro }}</p>
+		<p>{{ site.intro|truncate(50) }}</p>
 	      </div>
 	    </a>
 	  </div>
 	</li>
       {% endfor %}
     </ul>
-
-    <div class="row pagination-centered">
-      <ul class="pagination">
-	<li><a href="">&laquo;</a></li>
-	{% for p in range(10) %}
-	  <li><a href="">{{ p }}</a></li>
-	{% endfor %}
-	<li><a href="">&raquo;</a></li>
-      </ul>
-    </div>
+  </div>
 {% endblock content %}

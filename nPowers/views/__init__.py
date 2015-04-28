@@ -22,9 +22,9 @@ def send_mail(msg):
 @app.route('/')
 def index():
     user = g.user
-    sites = Site.objects
-    powers = Power.objects
-    tags = Tag.objects
+    sites = Site.objects[:20]
+    powers = Power.objects[:20]
+    tags = Tag.objects[:20]
     return render_template('index.html', sites=sites,
                            powers=powers, tags=tags, user=user)
 

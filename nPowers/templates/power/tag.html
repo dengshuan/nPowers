@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% from "_macros.html" import render_pagination %}
 
-{% set active_page = tag %}
+{% set active_page = tag.slug %}
 
 {% block sidebar %}
   <div class="panel">
@@ -9,7 +9,7 @@
     
   </div>
   <div class="panel">
-    <h4>Popular {{ tag.name }}s</h4>
+    <h4>Popular</h4>
     {% for power in powers %}
       <span class="label info">
 	<a href="{{ url_for('power.detail', slug=power.slug) }}">{{ power.name }}</a>
@@ -21,7 +21,7 @@
 
 {% block content %}
   <div class="row">
-    <ul class="small-block-grid-3">
+    <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
       {% for power in powers %}
 		<li>
 	    <div class="ih-item {%if power.img and power.img|tell_square%}square{%else%}circle{%endif%} effect13 bottom_to_top">
@@ -42,8 +42,8 @@
 	</li>
           {% endfor %}    
     </ul>
-    {% if pagination.has_prev or pagination.has_next %}
-      {{ render_pagination(pagination) }}
-    {% endif %}
+
+    {{ render_pagination(pagination) }}
+
   </div>
 {% endblock %}

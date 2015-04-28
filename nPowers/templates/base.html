@@ -1,14 +1,16 @@
 <!doctype html>
+{% from "_macros.html" import load_static %}
+
 <html class="no-js" lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Site Powered by | nPowers</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/foundation.css') }}" />
-    <script src="{{ url_for('static', filename='js/modernizr.js') }}"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/ihover.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/site.css') }}">
+    {{ load_static('css', 'css/foundation.css') }}
+    {{ load_static('js', 'js/modernizr.js') }}
+    {{ load_static('css', 'css/font-awesome.min.css') }}
+    {{ load_static('css', 'css/ihover.css')  }}
+    {{ load_static('css', 'css/site.css')  }}
   </head>
 
   <body>
@@ -70,29 +72,29 @@
 
     <div class="row fullWidth">
       <div class="large-3 columns">
-	{% block sidebar %}
-	  <div class="panel">
-	    <h4>Tips of the day</h4>
-	    <hr />
-	    find src/ -type f name "*.c" | xargs grep "function name"
+	<div class="hide-for-small">
+	  <div class="sidebar">
+	    {% block sidebar %}
+	      <div class="panel">
+		<h4>Tips of the day</h4>
+		<hr />
+		find src/ -type f name "*.c" | xargs grep "function name"
+	      </div>
+	    {% endblock sidebar %}
 	  </div>
-	{% endblock sidebar %}
+	</div>
       </div>
       <div class="large-9 columns">
-	{#
-	{% from "_macros.html" import messages %}
-	{{ messages() }}
-#}
 	{% with messages = get_flashed_messages(with_categories=true) %}
-	  {% if messages %}
-	    {% for category, message in messages %}
-	      <div data-alert class="alert-box {{ category }} radius">
-		{{ message }}
-		<a class="close" href="#">&times;</a>
+		  {% if messages %}
+	      {% for category, message in messages %}
+	        <div data-alert class="alert-box {{ category }} radius">
+				  {{ message }}
+		  <a class="close" href="#">&times;</a>
 	      </div>
 	    {% endfor %}
 	  {% endif %}
-	{% endwith %}
+		{% endwith %}
 
 	{% block content %}
 	  Sorry, no content right now.
@@ -108,8 +110,8 @@
     {% endblock footer %}
 
     {# load JavaScript #}
-    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/foundation.min.js') }}"></script>
+    {{ load_static('js', 'js/jquery.js') }}
+    {{ load_static('js', 'js/foundation.min.js') }}
     <script>
     $(document).foundation();
     </script>
