@@ -73,7 +73,7 @@ class ListView(View):
 class ImageHandler:
     UPLOAD_DIR = app.config['UPLOAD_DIR']
 
-    def __init__(self, file, fmt='jpeg'):
+    def __init__(self, file, fmt='png'):
         self.img = Image.open(file)
         self.id = str(uuid4())
         self.width, self.height = self.img.size
@@ -90,10 +90,6 @@ class ImageHandler:
     @property
     def resized_path(self):
         return self._make_path('resized')
-
-    @property
-    def cropped_path(self):
-        return self._make_path('cropped')
 
     def resize(self, width=None, height=None):
         if not(width or height):
@@ -112,14 +108,9 @@ class ImageHandler:
         resized_file = self._make_path('resized')
         im.save(resized_file, self.fmt)
 
-    def crop(self, width, height):
-        box = (left, upper, right, lower)
-        im = self.img.crop(box)
-        cropped_file = self._make_path('cropped')
-        im.save(cropped_file, self.fmt)
-
     def make_thumbnail(self, width, height):
         size = (int(width), int(height))
+        self.img.convert(mode='RGB')
         self.img.thumbnail(size)
         thumbnail_file = self._make_path('thumbnail')
         self.img.save(thumbnail_file, self.fmt)
