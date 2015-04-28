@@ -94,13 +94,19 @@ for collection in MODEL_FORM.keys():
                          collection=collection))
 
 
-@mod.route('/<collection>')
+@mod.route('/<collection>', defaults={'page': 1})
+@mod.route('/<collection>/<int:page>')
 @admin_required
-def manage(collection='site'):
+def manage(page, collection='site'):
+    per_page = 5
+    first = per_page * (page - 1)
+    last = first + per_page
     if collection in MODEL_FORM.keys():
         CollectionModel = MODEL_FORM[collection][0]
-        objects = CollectionModel.objects.all()
+        objects = CollectionModel.objects.order_by('_id')[first:last]
+        pagination = CollectionModel.objects.paginate(page=page, per_page=per_page)
         return render_template('admin/base.html',
-                               collection=collection, object_list=objects)
+                               collection=collection, object_list=objects,
+                               pagination=pagination)
     else:
         abort(404)

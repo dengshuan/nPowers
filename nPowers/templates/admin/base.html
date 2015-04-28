@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_macros.html" import nav_link %}
+{% from "_macros.html" import nav_link, render_pagination %}
 {% set active_page = "manage" %}
 
 {% block sidebar %}
@@ -55,15 +55,7 @@
     No {{ collection }} yet, please click "Add" button to add one.
   {% endif %}
 
-  <div class="row pagination-centered">
-    <ul class="pagination">
-      <li><a href="">&laquo;</a></li>
-      {% for p in range(10) %}
-	<li><a href="">{{ p }}</a></li>
-      {% endfor %}
-      <li><a href="">&raquo;</a></li>
-    </ul>
-  </div>
+  {{ render_pagination(pagination) }}
 {% endblock content %}
 
 
