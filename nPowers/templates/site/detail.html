@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_macros.html" import vote_js %}
+{% from "_macros.html" import vote_js, render_pagination %}
 
 {% set active_page = "site" %}
 
@@ -9,7 +9,7 @@
       {% if site.img %}
 	<img src="{{ site.img|get_image }}" class="" alt="{{ site.name }}" />
       {% else %}
-	<img src="{{ url_for('static', filename='img/1.jpg') }}" class="" alt="{{ site.name }}" />
+	<img src="{{ url_for('static', filename='img/site.png') }}" class="" alt="{{ site.name }}" />
       {% endif %}
       <p>{{ site.intro }}</p>
       <p>
@@ -31,19 +31,13 @@
       <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
 	{% for power in site.powers %}
 	  <li>
-	    <div class="ih-item circle effect13 bottom_to_top">
+	    <div class="power">
 	      <a href="{{ url_for('power.detail', slug=power.slug) }}">
-		<div class="img">
-		  {% if power.img %}
-		    <img src="{{ power.img|get_image }}">
-		  {% else %}
-		    <img src="{{ url_for('static', filename='img/1.jpg') }}">
-		  {% endif %}
-		</div>
-		<div class="info">
-		  <h3>{{ power.name }}</h3>
-		  <p>{{ power.intro|truncate(40) }}</p>
-		</div>
+		{% if power.img %}
+		  <img alt="{{ power.name }}" src="{{ power.img|get_image }}" title="{{ power.name }}"/>
+		{% else %}
+		  <img alt="{{ power.name }}" src="{{ url_for('static', filename='img/power.png') }}" title="{{ power.name }}"/>
+		{% endif %}
 	      </a>
 	    </div>
 	  </li>
@@ -55,7 +49,7 @@
       </div>
 
       <p>Comments:
-	{% for comment in site.comments %}
+	{% for comment in comments %}
 	  <div class="panel panel-default" id="comment-{{loop.index0}}">
 	    <a href="#" class="vote up"><i class="fa fa-thumbs-up"></i></a>
 	    <a href="#" class="vote down"><i class="fa fa-thumbs-down"></i></a>
@@ -76,16 +70,7 @@
 	<input type="submit" class="button" value="Submit" />
       </form>
     </div>
-    
-    <div class="row pagination-centered">
-      <ul class="pagination">
-	<li><a href="">&laquo;</a></li>
-	{% for p in range(10) %}
-	  <li><a href="">{{ p }}</a></li>
-	{% endfor %}
-	<li><a href="">&raquo;</a></li>
-      </ul>
-    </div>  
+    {{ render_pagination(pagination) }}
   {% endblock %}
 
 

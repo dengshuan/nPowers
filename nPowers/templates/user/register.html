@@ -2,6 +2,13 @@
 {% from "_macros.html" import render_field %}
 {% set active_page = 'register' %}
 
+  {% block sidebar %}
+    <div class="panel">
+      Welcome to join us, maintaining sites information and discussing
+      tech-powers!
+    </div>
+  {% endblock sidebar %}
+
 {% block content %}
   <div class="large-4">
   <form method="post" action="{{ url_for('user.register') }}">
@@ -15,6 +22,6 @@
       <input type="submit" class="button" value="Register" />
     </div>
   </form>
-  Already a user? <a href="{{ url_for('user.login') }}">Login</a>
+  Already a user? <a href="{{ url_for('user.login') }}">Login here</a>
   </div>
 {% endblock %}

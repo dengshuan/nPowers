@@ -57,7 +57,7 @@ def upload():
         relpath = os.path.join('uploads', filename)
         data = {
             'status': 'ok',
-            'id': handler.id,
+            'id': handler.uuid,
             'url': url_for('static', filename=relpath)
         }
         return jsonify(data)

@@ -6,6 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Site Powered by | nPowers</title>
+    <link href="{{ url_for('static', filename='img/favicon.ico') }}" rel="icon" type="image/x-icon"/>
     {{ load_static('css', 'css/foundation.css') }}
     {{ load_static('js', 'js/modernizr.js') }}
     {{ load_static('css', 'css/font-awesome.min.css') }}
@@ -31,11 +32,11 @@
 	    {{ nav_link(active_page, 'site', 'site.show_sites', 'Site') }}
 	    <li class="divider"></li>
 	    {% with nav_tags = [
-		('language', 'Language'),
-		('frontend-framework', 'Frontend Framework'),
-		('backend-framework', 'Backend Framework'),
-		('database', 'Database Server'),
-		('web-server', 'Web Server'),
+	      ('language', 'Language'),
+	      ('frontend-framework', 'Frontend Framework'),
+	      ('backend-framework', 'Backend Framework'),
+	      ('database', 'Database Server'),
+	      ('web-server', 'Web Server'),
 	    ] -%}
 	      {% for tag, caption in nav_tags %}
 		{{ nav_link(active_page, tag, 'power.tag', caption, slug=tag) }}
@@ -86,15 +87,15 @@
       </div>
       <div class="large-9 columns">
 	{% with messages = get_flashed_messages(with_categories=true) %}
-		  {% if messages %}
-	      {% for category, message in messages %}
-	        <div data-alert class="alert-box {{ category }} radius">
-				  {{ message }}
-		  <a class="close" href="#">&times;</a>
+	  {% if messages %}
+	    {% for category, message in messages %}
+	      <div data-alert class="alert-box {{ category }} radius">
+		{{ message }}
+		<a class="close" href="#">&times;</a>
 	      </div>
 	    {% endfor %}
 	  {% endif %}
-		{% endwith %}
+	{% endwith %}
 
 	{% block content %}
 	  Sorry, no content right now.
@@ -103,9 +104,19 @@
     </div>
 
     {% block footer %}
-      <footer class="row">
-	Powered by Flask MongoDB Foundation
-	<a href="{{ url_for('feedback') }}">Feedback</a>
+      <footer class="footer">
+	Powered by
+	{% with mypower = [
+	  ("flask", "Flask"), ("mongodb", "MongoDB"),
+	  ("foundation", "Foundation"), ("ubuntu", "Ubuntu"),
+	  ("nginx", "Nginx"), ("digitalocean", "Digitalocean")
+	] %}
+	  {% for slug, name in mypower %}
+	    <a href="{{ url_for('power.detail', slug=slug) }}">{{ name }}</a>	    
+	  {% endfor %}
+	{% endwith %}
+	<br/>
+	<a href="{{ url_for('feedback') }}">Feedback</a> are welcomed!
       </footer>
     {% endblock footer %}
 

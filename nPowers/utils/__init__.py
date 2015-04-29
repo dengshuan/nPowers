@@ -75,12 +75,12 @@ class ImageHandler:
 
     def __init__(self, file, fmt='png'):
         self.img = Image.open(file)
-        self.id = str(uuid4())
+        self.uuid = str(uuid4())
         self.width, self.height = self.img.size
         self.fmt = fmt
 
     def _make_path(self, type):
-        file_name = '{}_{}.{}'.format(self.id, type, self.fmt)
+        file_name = '{}_{}.{}'.format(self.uuid, type, self.fmt)
         return os.path.join(self.UPLOAD_DIR, file_name)
 
     @property

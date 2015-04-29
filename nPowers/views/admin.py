@@ -98,7 +98,7 @@ for collection in MODEL_FORM.keys():
 @mod.route('/<collection>/<int:page>')
 @admin_required
 def manage(page, collection='site'):
-    per_page = 5
+    per_page = 200
     first = per_page * (page - 1)
     last = first + per_page
     if collection in MODEL_FORM.keys():

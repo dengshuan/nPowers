@@ -1,13 +1,13 @@
 {% extends "base.html" %}
-{% from "_macros.html" import vote_js %}
+{% from "_macros.html" import vote_js, render_pagination %}
 
 {% block sidebar %}
   <div class="panel">
-    <h4>Power Logo</h4>
+    <h4>{{ power.name }}</h4>
     {% if power.img %}
           <a href="{{ power.url }}"><img src="{{ power.img|get_image }}"></a>
       {% else %}
-          <a href="{{ power.url }}"><img src="{{ url_for('static', filename='img/1.jpg') }}"></a>
+          <a href="{{ power.url }}"><img src="{{ url_for('static', filename='img/site.png') }}"></a>
     {% endif %}
     <a href="{{ power.url }}">{{ power.url }}</a>
     <br />
@@ -37,7 +37,7 @@
 	  <div class="ih-item square effect6 from_top_and_bottom">
 	    <a href="{{ url_for('site.detail', slug=site.slug) }}">
 	      <div class="img">
-		<img{% if site.img %} src="{{ site.img|get_image }}"{% else %} src="{{ url_for('static', filename='img/1.jpg') }}"{% endif %} alt="{{ site.name }}">
+		<img{% if site.img %} src="{{ site.img|get_image }}"{% else %} src="{{ url_for('static', filename='img/site.png') }}"{% endif %} alt="{{ site.name }}">
 	      </div>
 	      <div class="info">
 		<h3>{{ site.name }}</h3>
@@ -51,7 +51,7 @@
   </div>
   
   <p>Comments:
-    {% for comment in power.comments %}
+    {% for comment in comments %}
       <div class="panel panel-default comment" id="comment-{{loop.index0}}">
 	<a href="#" class="vote up"><i class="fa fa-thumbs-up"></i></a>
 	<a href="#" class="vote down"><i class="fa fa-thumbs-down"></i></a>
@@ -61,26 +61,17 @@
     {% endfor %}
   </p>
 
-    <form action="{{ url_for('power.comment', power_id=power.id) }}" method="post">
-      {{ form.hidden_tag() }}
-      {% if g.user.is_authenticated() %}
-	<input type="hidden" id="author" name="author" value="{{ g.user.id }}" />
-      {% else %}
-	Comment as <input name="author" type="text" value="" id="author"/>
-      {% endif %}
-      {{ form.content }}
-      <input type="submit" class="button" value="Submit" />
-    </form>
-
-  <div class="row pagination-centered">
-    <ul class="pagination">
-      <li><a href="">&laquo;</a></li>
-      {% for p in range(10) %}
-	<li><a href="">{{ p }}</a></li>
-      {% endfor %}
-      <li><a href="">&raquo;</a></li>
-    </ul>
-  </div>
+  <form action="{{ url_for('power.comment', power_id=power.id) }}" method="post">
+    {{ form.hidden_tag() }}
+    {% if g.user.is_authenticated() %}
+      <input type="hidden" id="author" name="author" value="{{ g.user.id }}" />
+    {% else %}
+      Comment as <input name="author" type="text" value="" id="author"/>
+    {% endif %}
+    {{ form.content }}
+    <input type="submit" class="button" value="Submit" />
+  </form>
+  {{ render_pagination(pagination) }}
 {% endblock %}
 
 {% block extra_js %}

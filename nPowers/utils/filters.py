@@ -5,8 +5,8 @@ from nPowers import app
 
 
 @app.template_filter()
-def get_image(id, type='thumbnail'):
-    img = 'uploads/' + id + '_' + type + '.png'
+def get_image(uuid, type='thumbnail'):
+    img = 'uploads/' + uuid + '_' + type + '.png'
     return url_for('static', filename=img)
 
 
@@ -16,9 +16,9 @@ def get_ids(object_list):
 
 
 @app.template_filter()
-def tell_square(id):
+def tell_square(uuid):
     img = Image.open(os.path.join(app.config['UPLOAD_DIR'],
-                                  id+'_thumbnail'+'.png'))
+                                  uuid+'_thumbnail'+'.png'))
     width, height = img.size
     return (width / height > 2) or (height / width > 2)
 

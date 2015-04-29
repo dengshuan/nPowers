@@ -5,10 +5,6 @@
 
 {% block sidebar %}
   <div class="panel">
-    <h4>{{ tag.name }}</h4>
-    
-  </div>
-  <div class="panel">
     <h4>Popular</h4>
     {% for power in powers %}
       <span class="label info">
@@ -23,27 +19,19 @@
   <div class="row">
     <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
       {% for power in powers %}
-		<li>
-	    <div class="ih-item {%if power.img and power.img|tell_square%}square{%else%}circle{%endif%} effect13 bottom_to_top">
-	      <a href="{{ url_for('power.detail', slug=power.slug) }}">
-	        <div class="img">
-		  {% if power.img %}
-		    <img src="{{ power.img|get_image }}">
-				    {% else %}
-		  <img src="{{ url_for('static', filename='img/1.jpg') }}">
-		{% endif %}
-	      </div>
-	      <div class="info">
-		  <h3>{{ power.name }}</h3>
-		<p>{{ power.intro|truncate(50) }}</p>
-	      </div>
+	<li>
+	  <div class="power">
+	    <a href="{{ url_for('power.detail', slug=power.slug) }}">
+	    {% if power.img %}
+	      <img alt="{{ power.name }}" src="{{ power.img|get_image }}" title="{{ power.name }}"/>
+	    {% else %}
+	      <img alt="{{ power.name }}" src="{{ url_for('static', filename='img/power.png') }}" title="{{ power.name }}"/>
+	    {% endif %}
 	    </a>
 	  </div>
 	</li>
-          {% endfor %}    
+      {% endfor %}    
     </ul>
-
     {{ render_pagination(pagination) }}
-
   </div>
 {% endblock %}

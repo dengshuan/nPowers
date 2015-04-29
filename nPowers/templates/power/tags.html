@@ -2,6 +2,12 @@
 
 {% set active_page = "all" %}
 
+  {% block sidebar %}
+    <div class="panel">
+      Finding powers to support your great sites? You're at the right place, all powers are here
+    </div>
+  {% endblock sidebar %}
+
 {% block content %}
   <div class="row">
     {% for tag in tags %}

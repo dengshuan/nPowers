@@ -2,6 +2,12 @@
 {% from "_macros.html" import render_field %}
 {% set active_page = 'login' %}
 
+  {% block sidebar %}
+    <div class="panel">
+      Login to make comments or post site infomation
+    </div>
+  {% endblock sidebar %}
+
 {% block content %}
   <div class="large-4">
     <form method="post" action="{{ url_for('user.login') }}">
@@ -13,10 +19,10 @@
       </div>
     </form>
     <p>
-      Not a user? <a href="{{ url_for('user.register') }}">Register</a>
+      Not a user? <a href="{{ url_for('user.register') }}">Register here</a>
     </p>
     <p>
-      Forget password? Just <a href="{{ url_for('user.reset') }}">reset it</a>
+      Forget password? Try to <a href="{{ url_for('user.reset') }}">reset it</a>
     </p>
   </div>
 {% endblock %}

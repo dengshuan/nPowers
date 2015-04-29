@@ -24,7 +24,7 @@ mod = Blueprint('site', __name__, url_prefix='/site')
 @mod.route('/', defaults={'page': 1})
 @mod.route('/page/<int:page>')
 def show_sites(page):
-    per_page = 5
+    per_page = 9
     first = per_page * (page - 1)
     last = first + per_page
     sites = Site.objects.order_by('_id')[first:last]
@@ -33,12 +33,18 @@ def show_sites(page):
                            sites=sites, pagination=pagination)
 
 
-@mod.route('/<slug>')
-def detail(slug):
-    tags = Tag.objects
+@mod.route('/<slug>', defaults={'page': 1})
+@mod.route('/<slug>/<int:page>')
+def detail(slug, page):
+    per_page = 1
+    first = per_page * (page - 1)
+    last = first + per_page
     form = CommentForm()
     site = Site.objects.get_or_404(slug=slug)
-    return render_template('site/detail.html', site=site, form=form, tags=tags)
+    comments = site.comments[first:last]
+    pagination = site.paginate_field('comments', page=page, per_page=per_page)
+    return render_template('site/detail.html', site=site, form=form,
+                           comments=comments, pagination=pagination)
 
 
 @mod.route('/<slug>/edit', methods=['GET', 'POST'])
