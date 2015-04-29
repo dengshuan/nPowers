@@ -53,7 +53,7 @@
 	    ]
 	},
 	{
-	    "name": "C#",
+	    "name": "C Sharp",
 	    "url": "https://msdn.microsoft.com/en-us/library/aa288436(v=vs.71).aspx",
 	    "intro": "",
 	    "tags": [
@@ -82,7 +82,8 @@
 	    "url": "http://www.scala-lang.org",
 	    "intro": "",
 	    "tags": [
-		"Language"
+		"Language",
+		"Java"
 	    ]
 	},
 	{
@@ -90,7 +91,8 @@
 	    "url": "http://nodejs.org",
 	    "intro": "Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices",
 	    "tags": [
-		"Language"
+		"Language",
+		"JavaScript"
 	    ]
 	},
 	{
@@ -299,8 +301,8 @@
 	},
 	{
 	    "name": "Oracle",
-	    "url": "http://www.oracle.com",
-	    "intro": "https://shop.oracle.com/pls/ostore/product?p1=OracleDatabase&p2=&p3=&p4=",
+	    "url": "https://shop.oracle.com/pls/ostore/product?p1=OracleDatabase&p2=&p3=&p4=",
+	    "intro": "",
 	    "tags": [
 		"Database"
 	    ]
@@ -389,7 +391,7 @@
 	    ]
 	},
 	{
-	    "name": "Ember.js",
+	    "name": "Ember",
 	    "url": "http://emberjs.com",
 	    "intro": "A framework for creating ambitious web applications",
 	    "tags": [
@@ -837,7 +839,7 @@
 	},
 	{
 	    "name": "Python Sphinx",
-	    "url": "http://",
+	    "url": "http://sphinx-doc.org",
 	    "intro": "",
 	    "tags": [
 		"Documentation",
@@ -919,6 +921,36 @@
 	    "powers": [
 		"Tornado",
 		"Nginx"
+	    ]
+	},
+	{
+	    "name": "Twitter",
+	    "url": "https://twitter.com",
+	    "intro": "",
+	    "powers": [
+		"scala"
+	    ]
+	},
+	{
+	    "name": "Facebook",
+	    "url": "https://www.facebook.com",
+	    "intro": "",
+	    "powers": [
+		"PHP"
+	    ]
+	},
+	{
+	    "name": "nPowers",
+	    "url": "http://site-powered-by.org",
+	    "intro": "",
+	    "powers": [
+		"Python",
+		"Flask",
+		"MongoDB",
+		"Nginx",
+		"Ubuntu",
+		"Foundation",
+		"Digitalocean"
 	    ]
 	}
     ]
