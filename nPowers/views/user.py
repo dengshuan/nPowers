@@ -1,7 +1,6 @@
 from flask import Blueprint, request, redirect, url_for,\
                   render_template, flash, abort, g
 from flask.ext.login import login_user, logout_user
-from flask.ext.mail import Message
 
 from nPowers import ts
 from nPowers.views import send_mail

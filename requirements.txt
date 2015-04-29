@@ -9,7 +9,6 @@ flask-bcrypt
 flask-cache
 python-slugify
 Flask-Login
-Flask-Mail
 Flask-Script
 Pillow
 gunicorn
