@@ -1,14 +1,16 @@
 #!/usr/bin/env python
+import os
 import simplejson as json
 from flask.ext.script import Manager, Server
 
 from nPowers import app, models
+from nPowers.utils import ImageHandler
 
 manager = Manager(app)
 
 
 @manager.command
-def initdb(data_file='data.json'):
+def init_db(data_file='data.json'):
     "Initialize database."
     with open(data_file, 'r') as f:
         data = json.load(f)
@@ -42,6 +44,37 @@ def initdb(data_file='data.json'):
         site_counter += 1
     print('Insert %s tags, %s powers, %s sites' % (tag_counter, power_counter,
                                                    site_counter))
+
+
+@manager.command
+def init_logo(logo_dir='logo'):
+    """Initialize logo."""
+    count = 0
+    for img in os.listdir(logo_dir):
+        slug = img.split('.')[0]
+        file = os.path.join(logo_dir, img)
+        handler = ImageHandler(file)
+        handler.make_thumbnail(300, 200)
+        uuid = handler.uuid
+        power = models.Power.objects.filter(slug=slug).first()
+        if power:
+            power.img = uuid
+            power.save()
+            count = count + 1
+    print("Initialize %s logos" % count)
+
+
+@manager.command
+def remove_outdated(upload_dir='nPowers/static/uploads'):
+    count = 0
+    sids = [site.img for site in models.Site.objects.all()]
+    pids = [power.img for power in models.Power.objects.all()]
+    ids = sids + pids
+    for img in os.listdir(upload_dir):
+        if img.split('_')[0] not in ids:
+            os.remove(os.path.join(upload_dir, img))
+            count = count + 1
+    print("Remove %s outdated images" % count)
 
 
 manager.add_command('runserver', Server(
