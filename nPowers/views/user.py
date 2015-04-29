@@ -51,11 +51,9 @@ def register():
             confirm_url = url_for('user.confirm_email',
                                   token=token, _external=True)
             html = render_template('email/activate.html',
-                                   confirm_url=confirm_url)
-            msg = Message(subject, sender='dengshuan_09@163.com',
-                          recipients=[user.email])
-            msg.html = html
-            send_mail.apply_async((msg,))
+                                   username=username, confirm_url=confirm_url)
+            to = user.email
+            send_mail.apply_async((to, subject, html))
             # login_user(user)
             flash('Nice work {}, please check your email to activate your account!'.format(user.username),
                   'success')
@@ -102,10 +100,8 @@ def reset():
                                   token=token, _external=True)
             html = render_template('email/recover.html',
                                    recover_url=recover_url)
-            msg = Message(subject, sender='dengshuan_09@163.com',
-                          recipients=[user.email])
-            msg.html = html
-            send_mail.apply_async((msg,))
+            to = user.email
+            send_mail.apply_async((to, subject, html))
             return redirect(url_for('user.login'))
     return render_template('user/reset.html', form=form)
 

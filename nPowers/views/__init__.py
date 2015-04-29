@@ -1,5 +1,6 @@
 from flask import g, render_template, request, jsonify, url_for
 from flask.ext.login import login_required
+import requests
 
 from nPowers import app, lm, celery, mail
 from nPowers.models import Site, Power, Tag, User
@@ -14,9 +15,18 @@ def load_user(userid):
     return User.objects.with_id(userid)
 
 
+# @celery.task()
+# def send_mail(msg):
+#     mail.send(msg)
+
+
 @celery.task()
-def send_mail(msg):
-    mail.send(msg)
+def send_mail(to, subject, html):
+    url = app.config['MAILGUN_URL']
+    auth = ("api", app.config['MAILGUN_KEY'])
+    data = {"from": app.config['MAILGUN_USER'],
+            "to": to, "subject": subject, "html": html}
+    requests.post(url=url, auth=auth, data=data)
 
 
 @app.route('/')
