@@ -89,3 +89,12 @@ files~ 和 ~Please make at least 3379MB available in
 /var/lib/mongodb/journal or use --smallfiles~ ，查了下发现 MongoDB 要
 求磁盘空间至少有 4GB，而服务器上之前是作为境外资源下载中转站的，可用空
 间只剩2个多GB了，删除部分视频后解决
+** 2015-04-29
+mailgun 通过应用中 celery 一直发送不出，解决方案：修改代码后需要重启 celery 服务
+** 2015-04-30
+服务器上用 Pillow 处理图片时提示 ~decoder zip not available~ 
+
+问题原因：ubuntu 服务器没有安装 zlib-dev, libpng-dev, libjpeg-dev，导
+致安装的 pillow 没有 zip, png, jpeg 支持。
+
+解决方案：安装 zlib-dev, libpng-dev, libjpeg-dev 之后，重新安装 pillow

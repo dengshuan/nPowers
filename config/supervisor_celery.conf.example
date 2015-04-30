@@ -1,0 +1,18 @@
+[supervisord]
+user = dengshuan
+logfile = log/celery/supervisord.log
+pidfile = log/celery/supervisord.pid
+
+[program:nPowers]
+command = /home/dengshuan/projects/env/bin/celery -A nPowers:celery worker -l info
+directory = /home/dengshuan/projects
+process_name = %(program_name)s
+numprocs = 1
+stopsignal = QUIT
+user = dengshuan
+autostart = true
+autorestart = true
+redirect_stderr = true
+stdout_logfile = log/celery/celery_out.log
+stderr_logfile = log/celery/celery_err.log
+environment = APP_CONFIG_FILE="/home/dengshuan/projects/config/production.py"
