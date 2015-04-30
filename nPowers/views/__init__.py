@@ -1,11 +1,10 @@
-from flask import g, render_template, request, jsonify, url_for
-from flask.ext.login import login_required
+from flask import g, render_template, request, jsonify
 import requests
 
 from nPowers import app, lm, celery
 from nPowers.models import Site, Power, Tag, User
 from nPowers.forms import FeedbackForm
-from nPowers.utils import ImageHandler
+
 
 _COLLECTION = {'power': Power, 'site': Site}
 
@@ -50,22 +49,16 @@ def feedback():
     return render_template('feedback.html', form=form)
 
 
-@app.route('/upload', methods=['GET', 'POST'])
-@login_required
+@app.route('/upload', methods=['POST'])
 def upload():
-    if request.method == 'POST':
-        file = request.files['file']
-        handler = ImageHandler(file)
-        handler.make_thumbnail(300, 200)
-        import os
-        filename = os.path.split(handler.thumbnail_path)[1]
-        relpath = os.path.join('uploads', filename)
-        data = {
-            'status': 'ok',
-            'id': handler.uuid,
-            'url': url_for('static', filename=relpath)
-        }
-        return jsonify(data)
+    key = request.form['key']
+    mode = '?imageView2/2/w/300/h/200'
+    data = {
+        'status': 'ok',
+        'key': key,
+        'url': app.config['QINIU_URL'] + 'uploads' + key + mode
+    }
+    return jsonify(data)
 
 
 @app.route('/<collection>/<item_id>/vote', methods=['POST'])

@@ -7,7 +7,7 @@
     {% if power.img %}
           <a href="{{ power.url }}"><img src="{{ power.img|get_image }}"></a>
       {% else %}
-          <a href="{{ power.url }}"><img src="{{ url_for('static', filename='img/site.png') }}"></a>
+          <a href="{{ power.url }}"><img src="{{ 'img/site.png'|get_static }}"></a>
     {% endif %}
     <a href="{{ power.url }}">{{ power.url }}</a>
     <br />
@@ -37,7 +37,7 @@
 	  <div class="ih-item square effect6 from_top_and_bottom">
 	    <a href="{{ url_for('site.detail', slug=site.slug) }}">
 	      <div class="img">
-		<img{% if site.img %} src="{{ site.img|get_image }}"{% else %} src="{{ url_for('static', filename='img/site.png') }}"{% endif %} alt="{{ site.name }}">
+		<img{% if site.img %} src="{{ site.img|get_image }}"{% else %} src="{{ 'img/site.png'|get_static }}"{% endif %} alt="{{ site.name }}">
 	      </div>
 	      <div class="info">
 		<h3>{{ site.name }}</h3>

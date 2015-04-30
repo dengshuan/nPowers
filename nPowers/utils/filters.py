@@ -5,9 +5,15 @@ from nPowers import app
 
 
 @app.template_filter()
-def get_image(uuid, type='thumbnail'):
-    img = 'uploads/' + uuid + '_' + type + '.png'
-    return url_for('static', filename=img)
+def get_image(key, width=300, height=200):
+    mode = '?imageView2/2/w/{}/h/{}'.format(width, height)
+    url = app.config['QINIU_URL'] + 'uploads/' + key + mode
+    return url
+
+
+@app.template_filter()
+def get_static(name):
+    return app.config['QINIU_URL'] + name
 
 
 @app.template_filter()

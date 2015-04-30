@@ -1,4 +1,5 @@
 from datetime import datetime
+from uuid import uuid4
 
 from flask import url_for, redirect, Blueprint,\
     render_template, flash, request
@@ -6,7 +7,7 @@ from flask.ext.login import login_required
 
 from nPowers.models import User, Site, Comment, Power, Tag
 from nPowers.forms import SiteForm, CommentForm
-from nPowers.utils import flash_errors
+from nPowers.utils import flash_errors, generate_token
 
 
 mod = Blueprint('site', __name__, url_prefix='/site')
@@ -52,12 +53,17 @@ def detail(slug, page):
 def edit(slug):
     site = Site.objects.get_or_404(slug=slug)
     if request.method == 'GET':
+        key = str(uuid4())
+        policy = {'callbackUrl': 'http://site-powered-by.org/upload',
+                  'callbackBody': 'key=$(key)'}
+        token = generate_token(key, policy)
         form = SiteForm()
         item = Site.objects.get_or_404(slug=slug)
         power_ids = [str(t.id) for t in item.powers]
         return render_template('site/edit.html',
                                site=site, form=form,
-                               power_ids=power_ids, item=item)
+                               power_ids=power_ids, item=item,
+                               key=key, token=token)
     if request.method == 'POST':
         form = SiteForm(request.form)
         if form.validate_on_submit():

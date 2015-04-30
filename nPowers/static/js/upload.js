@@ -16,7 +16,7 @@ $(document).ready(function() {
 		}, false);
 		return xhr;
 	    },
-	    url: "/upload",
+	    url: "http://upload.qiniu.com",
 	    type: "post",
 	    data: fd,
 	    enctype: "multipart/form-data",
@@ -25,7 +25,7 @@ $(document).ready(function() {
 	}).done(function(data) {
 	    $("#thumbnail")[0].src = data.url;
 	    $("#thumbnail").show();
-	    $("#img").val(data.id);
+	    $("#img").val(data.key);
 	});
 	return false;
     });

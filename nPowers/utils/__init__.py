@@ -7,6 +7,7 @@ from celery import Celery
 from flask import request, url_for, render_template,\
     flash, g, abort, redirect
 from flask.views import View
+from qiniu import Auth
 
 
 from nPowers import app
@@ -22,6 +23,11 @@ def check_auth(username, password):
         return user.is_staff
     else:
         return False
+
+
+def generate_token(key, policy=None):
+    q = Auth(app.config['QINIU_AK'], app.config['QINIU_SK'])
+    return q.upload_token(app.config['QINIU_BUCKET'], key, policy=policy)
 
 
 def flash_errors(form):

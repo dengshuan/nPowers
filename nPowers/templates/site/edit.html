@@ -6,6 +6,8 @@
   <label>Update Image</label>
   <form id="upload-form">
     <input type="file" id="upload-file" name="file" />
+    <input type="hidden" name="token" value="{{ token }}">
+    <input type="hidden" name="key" value="{{ key }}">
   </form>
   <div class="hide" id="uploading">
     <input type="button" id="upload" class="button" name="upload" value="Upload" />

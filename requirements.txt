@@ -16,6 +16,7 @@ simplejson
 celery
 redis
 requests
+qiniu
 # for development
 Flask-DebugToolbar
 watchdog

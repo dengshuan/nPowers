@@ -49,7 +49,7 @@ def unauthorized(error):
 # import filters
 from nPowers.utils import make_celery
 from nPowers.utils.filters import get_image, get_ids, tell_square,\
-    format_time, url_for_other_page
+    format_time, url_for_other_page, get_static
 
 app.jinja_env.globals['url_for_other_page'] = url_for_other_page
 celery = make_celery(app)

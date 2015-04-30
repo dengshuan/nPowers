@@ -25,7 +25,7 @@
 	    {% if power.img %}
 	      <img alt="{{ power.name }}" src="{{ power.img|get_image }}" title="{{ power.name }}"/>
 	    {% else %}
-	      <img alt="{{ power.name }}" src="{{ url_for('static', filename='img/power.png') }}" title="{{ power.name }}"/>
+	      <img alt="{{ power.name }}" src="{{ 'img/power.png'|get_static }}" title="{{ power.name }}"/>
 	    {% endif %}
 	    </a>
 	  </div>

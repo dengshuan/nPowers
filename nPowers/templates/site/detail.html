@@ -9,7 +9,7 @@
       {% if site.img %}
 	<img src="{{ site.img|get_image }}" class="" alt="{{ site.name }}" />
       {% else %}
-	<img src="{{ url_for('static', filename='img/site.png') }}" class="" alt="{{ site.name }}" />
+	<img src="{{ 'img/site.png'|get_static }}" class="" alt="{{ site.name }}" />
       {% endif %}
       <p>{{ site.intro }}</p>
       <p>
@@ -36,7 +36,7 @@
 		{% if power.img %}
 		  <img alt="{{ power.name }}" src="{{ power.img|get_image }}" title="{{ power.name }}"/>
 		{% else %}
-		  <img alt="{{ power.name }}" src="{{ url_for('static', filename='img/power.png') }}" title="{{ power.name }}"/>
+		  <img alt="{{ power.name }}" src="{{ 'img/power.png'|get_static }}" title="{{ power.name }}"/>
 		{% endif %}
 	      </a>
 	    </div>

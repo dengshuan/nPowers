@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Site Powered by | nPowers</title>
     <link href="{{ url_for('static', filename='img/favicon.ico') }}" rel="icon" type="image/x-icon"/>
-    {{ load_static('css', 'css/foundation.css') }}
-    {{ load_static('js', 'js/modernizr.js') }}
-    {{ load_static('css', 'css/font-awesome.min.css') }}
-    {{ load_static('css', 'css/ihover.css')  }}
-    {{ load_static('css', 'css/site.css')  }}
+    <link href="{{ 'css/foundation.min.css'|get_static }}" rel="stylesheet">
+    <script src="{{ 'js/modernizr.js'|get_static }}"></script>
+    <link href="{{ 'css/font-awesome.min.css'|get_static }}" rel="stylesheet">
+    <link href="{{ 'css/ihover.min.css'|get_static }}" rel="stylesheet">
+    <link href="{{ 'css/site.css'|get_static }}" rel="stylesheet">
   </head>
 
   <body>
@@ -121,8 +121,8 @@
     {% endblock footer %}
 
     {# load JavaScript #}
-    {{ load_static('js', 'js/jquery.js') }}
-    {{ load_static('js', 'js/foundation.min.js') }}
+    <script src="{{ 'js/jquery.js'|get_static }}"></script>
+    <script src="{{ 'js/foundation.min.js'|get_static }}"></script>
     <script>
     $(document).foundation();
     </script>
