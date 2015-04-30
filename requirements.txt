@@ -14,6 +14,7 @@ Pillow
 gunicorn
 simplejson
 celery
+redis
 requests
 # for development
 Flask-DebugToolbar
