@@ -11,4 +11,5 @@ __pycache__/
 log/
 config/*.conf
 instance/
+tmp/
 nPowers/static/uploads/*
