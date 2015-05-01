@@ -5,6 +5,8 @@
   <label>Upload Image</label>
   <form id="upload-form">
     <input type="file" id="upload-file" name="file" />
+    <input name="token" type="hidden" value="{{ token }}"/>
+    <input name="key" type="hidden" value="{{ key }}"/>
   </form>
   <div class="hide" id="uploading">
     <input type="button" id="upload" class="button" name="upload" value="Upload" />
@@ -20,3 +22,8 @@
     <input type="submit" class="button" value="Submit" />
   </form>
 {% endblock %}
+
+{% block extra_js %}
+  <script type="text/javascript" src="{{ url_for('static', filename='js/upload.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/select.js') }}"></script>
+{% endblock extra_js %}

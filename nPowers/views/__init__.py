@@ -56,7 +56,7 @@ def upload():
     data = {
         'status': 'ok',
         'key': key,
-        'url': app.config['QINIU_URL'] + 'uploads' + key + mode
+        'url': app.config['QINIU_URL'] + 'uploads/' + key + mode
     }
     return jsonify(data)
 
