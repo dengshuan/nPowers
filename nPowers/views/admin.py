@@ -1,9 +1,10 @@
+from uuid import uuid4
 from flask import url_for, render_template, Blueprint, request,\
                   redirect, flash, abort
 from flask.views import MethodView
 from nPowers.models import User, Power, Tag, Site
 from nPowers.forms import PowerForm, TagForm, SiteForm, UserForm
-from nPowers.utils import admin_required, flash_errors
+from nPowers.utils import admin_required, flash_errors, generate_token
 
 mod = Blueprint('admin', __name__, url_prefix='/admin')
 
@@ -25,8 +26,13 @@ class AddView(MethodView):
     def get(self):
         CollectionForm = self.form
         form = CollectionForm()
+        key = 'uploads/' + str(uuid4())
+        policy = {'callbackUrl': 'http://site-powered-by.org/upload',
+                  'callbackBody': 'key=$(key)'}
+        token = generate_token(key, policy)
         return render_template(self.template, form=form,
-                               collection=self.collection)
+                               collection=self.collection,
+                               key=key, token=token)
 
     def post(self):
         CollectionForm = self.form
@@ -52,9 +58,14 @@ class EditView(MethodView):
         CollectionForm = self.form
         CollectionModel = self.model
         form = CollectionForm()
+        key = 'uploads/' + str(uuid4())
+        policy = {'callbackUrl': 'http://site-powered-by.org/upload',
+                  'callbackBody': 'key=$(key)'}
+        token = generate_token(key, policy)
         item = CollectionModel.objects.get_or_404(id=uuid)
         return render_template(self.template, form=form,
-                               collection=self.collection, item=item)
+                               collection=self.collection,
+                               item=item, key=key, token=token)
 
     def post(self, uuid):
         CollectionForm = self.form

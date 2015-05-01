@@ -1,33 +1,18 @@
 {% extends "admin/base.html" %}
-{% from "_macros.html" import render_field, textarea, select_panel, hide_select %}
+{% from "_macros.html" import render_field, textarea, select_panel, hide_select, image_upload %}
 
 {% block content %}
-<label>Update Image</label>
-<form id="upload-form">
-  <input type="file" id="upload-file" name="file" />
-</form>
-<div class="hide" id="uploading">
-  <input type="button" id="upload" class="button" name="upload" value="Upload" />
-  <div class="progress"><span id="progressbar" class="meter" style="width:0%">0%</span></div>
-</div>
-<div class="thumbnail">
-  {% if item.img %}
-    <img src="{{ item.img|get_image }}" id="thumbnail" alt="{{ item.name }}" />
-  {% else %}
-    <img src="" id="thumbnail" class="hide" alt="{{ item.name }}" />
-  {% endif %}
-</div>
+  {{ image_upload(token, key, item=item) }}
 
-
-<form action="{{ url_for('admin.edit_site', uuid=item.id) }}" method="post">
-  {{ form.csrf_token }}
-  <input type="hidden" id="uuid" name="uuid" value="{{ item.id }}" />
-  <input type="hidden" id="img" name="img" value="{{ item.img }}" />
-  {{ render_field(form.name, value=item.name) }}
-  {{ render_field(form.url, value=item.url) }}
-  {{ textarea("intro", "Intro", value=item.intro) }}
-  {{ select_panel(form.powers.choices, item.powers) }}
-  {{ hide_select("powers", form.powers.choices, item.powers) }}
-  <input type="submit" class="button" value="Update">
-</form>
+  <form action="{{ url_for('admin.edit_site', uuid=item.id) }}" method="post">
+    {{ form.csrf_token }}
+    <input type="hidden" id="uuid" name="uuid" value="{{ item.id }}" />
+    <input type="hidden" id="img" name="img" value="{{ item.img }}" />
+    {{ render_field(form.name, value=item.name) }}
+    {{ render_field(form.url, value=item.url) }}
+    {{ textarea("intro", "Intro", value=item.intro) }}
+    {{ select_panel(form.powers.choices, item.powers) }}
+    {{ hide_select("powers", form.powers.choices, item.powers) }}
+    <input type="submit" class="button" value="Update">
+  </form>
 {% endblock content %}

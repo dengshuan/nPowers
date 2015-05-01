@@ -8,10 +8,10 @@
     </div>
   {% endblock sidebar %}
 
-{% block content %}
-  <div class="row">
-    {% for tag in tags %}
-      <span class="radius label secondary"><a href="{{ url_for('power.tag', slug=tag.slug) }}">{{ tag.name }}</a></span>
-    {% endfor %}
-  </div>
-{% endblock %}
+  {% block content %}
+    <div class="row">
+      {% for tag in tags %}
+	<span class="radius label secondary"><a href="{{ url_for('power.tag', slug=tag.slug) }}">{{ tag.name }}</a></span>
+      {% endfor %}
+    </div>
+  {% endblock %}

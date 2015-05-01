@@ -9,19 +9,19 @@
     </div>
   {% endblock sidebar %}
 
-{% block content %}
-  <div class="large-4">
-  <form method="post" action="{{ url_for('user.register') }}">
-    <div class="panel">
-      <h4>Register</h4>
-      {{ form.hidden_tag() }}
-      {{ render_field(form.username) }}
-      {{ render_field(form.email) }}
-      {{ render_field(form.password) }}
-      {{ render_field(form.confirm) }}
-      <input type="submit" class="button" value="Register" />
+  {% block content %}
+    <div class="large-4">
+      <form method="post" action="{{ url_for('user.register') }}">
+	<div class="panel">
+	  <h4>Register</h4>
+	  {{ form.hidden_tag() }}
+	  {{ render_field(form.username) }}
+	  {{ render_field(form.email) }}
+	  {{ render_field(form.password) }}
+	  {{ render_field(form.confirm) }}
+	  <input type="submit" class="button" value="Register" />
+	</div>
+      </form>
+      Already a user? <a href="{{ url_for('user.login') }}">Login here</a>
     </div>
-  </form>
-  Already a user? <a href="{{ url_for('user.login') }}">Login here</a>
-  </div>
-{% endblock %}
+  {% endblock %}

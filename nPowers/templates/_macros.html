@@ -63,14 +63,14 @@
 {% endmacro %}
 
 {% macro select_panel(choices, selected=none) %}
-{#  <div class="row">
-    <div class="small-5 columns">
-      <input name="filter" type="text" placeholder="type to search"/>
+  {#  <div class="row">
+      <div class="small-5 columns">
+        <input name="filter" type="text" placeholder="type to search"/>
     </div>
-    <div class="small-5 columns">
-      <input name="filter" type="text" placeholder="type to search"/>
+      <div class="small-5 columns">
+        <input name="filter" type="text" placeholder="type to search"/>
     </div>
-  </div> #}
+    </div> #}
   <div class="row">
     <div class="small-5 columns">
       <select id="from" size="20" multiple>
@@ -173,4 +173,56 @@
     }
   });
   </script>
+{% endmacro %}
+
+{% macro upload_form(token, key) %}
+  <form id="upload-form">
+    <input type="file" id="upload-file" name="file" />
+    <input name="token" type="hidden" value="{{ token }}"/>
+    <input name="key" type="hidden" value="{{ key }}"/>
+  </form>
+{% endmacro %}
+
+{% macro upload_progress() %}
+  <div class="hide" id="uploading">
+    <input type="button" id="upload" class="button" name="upload" value="Upload" />
+    <div class="progress"><span id="progressbar" class="meter" style="width:0%">0%</span></div>
+  </div>
+{% endmacro %}
+
+{% macro show_thumbnail(item=none) %}
+  <div class="thumbnail">
+    {% if item %}
+      {% if item.img %}
+	<img src="{{ item.img|get_image }}" id="thumbnail" alt="{{ item.name }}" />
+      {% else %}
+	<img src="" id="thumbnail" class="hide" alt="{{ item.name }}" />
+      {% endif %}
+    {% else %}
+      <img src="" id="thumbnail" class="hide"/>
+    {% endif %}
+  </div>
+{% endmacro %}
+
+{% macro image_upload(token, key, item=none) %}
+  <label>Update Image</label>
+  {{ upload_form(token, key) }}
+  {{ upload_progress() }}
+  {{ show_thumbnail(item) }}
+{% endmacro %}
+
+{% macro show_comments(comments) %}
+  <p>Comments:
+    {% for comment in comments %}
+      <div class="panel panel-default comment" id="comment-{{loop.index0}}">
+	<a href="#" class="vote up"><i class="fa fa-thumbs-up"></i></a>
+	<a href="#" class="vote down"><i class="fa fa-thumbs-down"></i></a>
+	{{ comment.content }}
+	<div class="datetime">{{ comment.created|format_time }}</div>
+	by <span title="{{ comment.author.ip or 'Registered user' }}">
+	  @{{ comment.author.username }}
+	</span>
+      </div>
+    {% endfor %}
+  </p>
 {% endmacro %}

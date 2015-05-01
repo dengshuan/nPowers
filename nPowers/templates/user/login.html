@@ -8,21 +8,21 @@
     </div>
   {% endblock sidebar %}
 
-{% block content %}
-  <div class="large-4">
-    <form method="post" action="{{ url_for('user.login') }}">
-      <div class="panel">
-	{{ form.hidden_tag() }}
-	{{ render_field(form.username) }}
-	{{ render_field(form.password) }}
-	<input type="submit" class="button" value="Login" />
-      </div>
-    </form>
-    <p>
-      Not a user? <a href="{{ url_for('user.register') }}">Register here</a>
-    </p>
-    <p>
-      Forget password? Try to <a href="{{ url_for('user.reset') }}">reset it</a>
-    </p>
-  </div>
-{% endblock %}
+  {% block content %}
+    <div class="large-4">
+      <form method="post" action="{{ url_for('user.login') }}">
+	<div class="panel">
+	  {{ form.hidden_tag() }}
+	  {{ render_field(form.username) }}
+	  {{ render_field(form.password) }}
+	  <input type="submit" class="button" value="Login" />
+	</div>
+      </form>
+      <p>
+	Not a user? <a href="{{ url_for('user.register') }}">Register here</a>
+      </p>
+      <p>
+	Forget password? Try to <a href="{{ url_for('user.reset') }}">reset it</a>
+      </p>
+    </div>
+  {% endblock %}

@@ -2,64 +2,64 @@
 {% from "_macros.html" import nav_link, render_pagination %}
 {% set active_page = "manage" %}
 
-{% block sidebar %}
-  <div class="panel">
-    <nav>
-    <ul class="side-nav">
-      {% with collections = ['site', 'user', 'tag', 'power'] %}
-	{% for c in collections %}
-	  {{ nav_link(collection, c, 'admin.manage', c, collection=c) }}
-	{% endfor %}
-      {% endwith %}
-    </ul>
-    </nav>
-  </div>
-  <div class="panel">
-    <a href="{{ url_for('admin.add' + '_' + collection) }}" class="button">Add</a>
-  </div>
-{% endblock sidebar %}
+  {% block sidebar %}
+    <div class="panel">
+      <nav>
+	<ul class="side-nav">
+	  {% with collections = ['site', 'user', 'tag', 'power'] %}
+	    {% for c in collections %}
+	      {{ nav_link(collection, c, 'admin.manage', c, collection=c) }}
+	    {% endfor %}
+	  {% endwith %}
+	</ul>
+      </nav>
+    </div>
+    <div class="panel">
+      <a href="{{ url_for('admin.add' + '_' + collection) }}" class="button">Add</a>
+    </div>
+  {% endblock sidebar %}
 
-{% block content %}
-  {% if object_list %}
-    <table>
-      <thead>
-	<tr>
-	  <th>Id</th>
-	  <th>Name</th>
-	  <th>URL</th>
-	  <th>Introduction</th>
-	</tr>
-      </thead>
-      <tbody>
-	{% for object in object_list %}
+  {% block content %}
+    {% if object_list %}
+      <table>
+	<thead>
 	  <tr>
-	    <td>
-	      <a href="{{ url_for('admin.edit'+'_'+collection, uuid=object.id) }}">
-		{{ object.id }}
-	      </a>
-	    </td>
-	    <td>
-	      {% if object.name %}
-		{{ object.name }}
-	      {% elif object.username %}
-		{{ object.username }}
-	      {% endif %}
-	    </td>
-	    <td>{{ object.url }}</td>
-	    <td>{{ object.intro|truncate(40) }}</td>
+	    <th>Id</th>
+	    <th>Name</th>
+	    <th>URL</th>
+	    <th>Introduction</th>
 	  </tr>
-	{% endfor %}
-      </tbody>
-    </table>
-  {% else %}
-    No {{ collection }} yet, please click "Add" button to add one.
-  {% endif %}
+	</thead>
+	<tbody>
+	  {% for object in object_list %}
+	    <tr>
+	      <td>
+		<a href="{{ url_for('admin.edit'+'_'+collection, uuid=object.id) }}">
+		  {{ object.id }}
+		</a>
+	      </td>
+	      <td>
+		{% if object.name %}
+		  {{ object.name }}
+		{% elif object.username %}
+		  {{ object.username }}
+		{% endif %}
+	      </td>
+	      <td>{{ object.url }}</td>
+	      <td>{{ object.intro|truncate(40) }}</td>
+	    </tr>
+	  {% endfor %}
+	</tbody>
+      </table>
+    {% else %}
+      No {{ collection }} yet, please click "Add" button to add one.
+    {% endif %}
 
-  {{ render_pagination(pagination) }}
-{% endblock content %}
+    {{ render_pagination(pagination) }}
+  {% endblock content %}
 
 
-{% block extra_js %}
-  <script type="text/javascript" src="{{ url_for('static', filename='js/upload.js') }}"></script>
-  <script type="text/javascript" src="{{ url_for('static', filename='js/select.js') }}"></script>
-{% endblock %}
+  {% block extra_js %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/upload.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/select.js') }}"></script>
+  {% endblock %}

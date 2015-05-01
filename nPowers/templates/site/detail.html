@@ -47,21 +47,7 @@
       <div class="datetime">
 	Last edit:{{ site.last_edit|format_time }}      
       </div>
-
-      <p>Comments:
-	{% for comment in comments %}
-	  <div class="panel panel-default" id="comment-{{loop.index0}}">
-	    <a href="#" class="vote up"><i class="fa fa-thumbs-up"></i></a>
-	    <a href="#" class="vote down"><i class="fa fa-thumbs-down"></i></a>
-	    {{ comment.content }}
-	    <div class="datetime">{{ comment.created|format_time }}</div>
-	    by <span title="{{ comment.author.ip or 'Registered user' }}">
-	      @{{ comment.author.username }}
-	    </span>
-	  </div>
-	{% endfor %}
-      </p>
-
+      {{ show_comments(comments) }}
       <form action="{{ url_for('site.comment', site_id=site.id) }}" method="post">
 	{{ form.hidden_tag() }}
 	{% if g.user.is_authenticated() %}
@@ -76,8 +62,6 @@
     </div>
     {{ render_pagination(pagination) }}
   {% endblock %}
-
-
 
   {% block extra_js %}
     {{ vote_js("site", site) }}

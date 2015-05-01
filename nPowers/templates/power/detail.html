@@ -1,13 +1,13 @@
 {% extends "base.html" %}
-{% from "_macros.html" import vote_js, render_pagination %}
+{% from "_macros.html" import vote_js, render_pagination, show_comments %}
 
 {% block sidebar %}
   <div class="panel">
     <h4>{{ power.name }}</h4>
     {% if power.img %}
-          <a href="{{ power.url }}"><img src="{{ power.img|get_image }}"></a>
-      {% else %}
-          <a href="{{ power.url }}"><img src="{{ 'img/site.png'|get_static }}"></a>
+      <a href="{{ power.url }}"><img src="{{ power.img|get_image }}"></a>
+    {% else %}
+      <a href="{{ power.url }}"><img src="{{ 'img/site.png'|get_static }}"></a>
     {% endif %}
     <a href="{{ power.url }}">{{ power.url }}</a>
     <br />
@@ -49,21 +49,8 @@
       {% endfor %}
     </ul>
   </div>
-  
-  <p>Comments:
-    {% for comment in comments %}
-      <div class="panel panel-default comment" id="comment-{{loop.index0}}">
-	<a href="#" class="vote up"><i class="fa fa-thumbs-up"></i></a>
-	<a href="#" class="vote down"><i class="fa fa-thumbs-down"></i></a>
-	{{ comment.content }}
-	<div class="datetime">{{ comment.created|format_time }}</div>
-	by <span title="{{ comment.author.ip or 'Registered user' }}">
-	  @{{ comment.author.username }}
-	</span>
-      </div>
-    {% endfor %}
-  </p>
 
+  {{ show_comments(comments) }}
   <form action="{{ url_for('power.comment', power_id=power.id) }}" method="post">
     {{ form.hidden_tag() }}
     {% if g.user.is_authenticated() %}

@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% set active_page = 'profile' %}
 
-{% block sidebar %}
-  <div class="panel">
-    <h4>{{ user.username }}</h4>
-    <p>{{ user.email }}</p>
-  </div>
-{% endblock sidebar %}
+  {% block sidebar %}
+    <div class="panel">
+      <h4>{{ user.username }}</h4>
+      <p>{{ user.email }}</p>
+    </div>
+  {% endblock sidebar %}
 
-{% block content %}
-  
-{% endblock %}
+  {% block content %}
+    
+  {% endblock %}
