@@ -46,16 +46,6 @@
 	  </ul>
 	  {# Right Nav Section #}
 	  <ul class="right">
-	    <li class="has-form">
-	      <div class="row collapse">
-		<div class="large-8 small-9 columns">
-		  <input type="text" placeholder="Search" />
-		</div>
-		<div class="large-4 small-3 columns">
-		  <a href="{{ url_for('search') }}" class="button expand">Go</a>
-		</div>
-	      </div>
-	    </li>
 	    {% if g.user.is_authenticated() %}
 	      {% if g.user.is_staff %}
 		{{ nav_link(active_page, 'manage', 'admin.manage', 'Manage', collection='site') }}
