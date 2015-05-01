@@ -6,12 +6,13 @@ from flask.ext.debugtoolbar import DebugToolbarExtension
 from flask.ext.bcrypt import Bcrypt
 from flask.ext.mail import Mail
 from itsdangerous import URLSafeTimedSerializer
+from werkzeug.contrib.fixers import ProxyFix
 
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_object('config.default')
 app.config.from_pyfile('config.py')
 app.config.from_envvar('APP_CONFIG_FILE')
-
+app.wsgi_app = ProxyFix(app.wsgi_app)
 
 db = MongoEngine(app)
 app.session_interface = MongoEngineSessionInterface(db)

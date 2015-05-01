@@ -120,3 +120,13 @@ mailgun 通过应用中 celery 一直发送不出，解决方案：修改代码�
       }
   }
 #+END_SRC
+** 2015-05-01
+记录匿名评论用户的 IP 时，总是得到 127.0.0.1 这个 gunicorn 绑定的 ip
+
+http://esd.io/blog/flask-apps-heroku-real-ip-spoofing.html
+
+werkzeug 已经修正过这个问题
+#+BEGIN_SRC python
+  from werkzeug.contrib.fixers import ProxyFix
+  app.wsgi_app = ProxyFix(app.wsgi_app)
+#+END_SRC
