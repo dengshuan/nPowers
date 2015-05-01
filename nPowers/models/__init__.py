@@ -7,6 +7,7 @@ from nPowers import db, bcrypt
 class User(db.Document):
     username = db.StringField(max_length=50)
     email = db.EmailField(max_length=50)
+    ip = db.StringField(max_length=50)
     password_hash = db.StringField(max_length=255)
     is_staff = db.BooleanField()
     activated = db.BooleanField()
@@ -21,7 +22,10 @@ class User(db.Document):
         return True
 
     def is_anonymous(self):
-        return False
+        if self.email:
+            return False
+        else:
+            return True
 
     def is_active(self):
         return True

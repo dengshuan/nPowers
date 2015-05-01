@@ -37,7 +37,7 @@ def show_sites(page):
 @mod.route('/<slug>', defaults={'page': 1})
 @mod.route('/<slug>/<int:page>')
 def detail(slug, page):
-    per_page = 1
+    per_page = 30
     first = per_page * (page - 1)
     last = first + per_page
     form = CommentForm()
@@ -114,7 +114,6 @@ def add():
 
 
 @mod.route('/comment/<site_id>', methods=['POST'])
-@login_required
 def comment(site_id):
     site = Site.objects.get_or_404(id=site_id)
     if request.method == 'GET':
@@ -123,15 +122,20 @@ def comment(site_id):
     if request.method == 'POST':
         form = CommentForm(request.form)
         if form.validate_on_submit():
+            ip = request.remote_addr
             content = form.content.data
-            authorid = form.author.data
-            if authorid:
-                author = User.objects.get(id=authorid)
-                comment = Comment(content=content,
-                                  author=author,
-                                  created=datetime.now())
-                site.comments.append(comment)
-                site.save()
+            userid = form.userid.data
+            username = form.username.data
+            if userid:
+                user = User.objects.get(id=userid)
+            else:
+                user = User(username=username, ip=ip)
+                user.save()
+            comment = Comment(content=content,
+                              author=user,
+                              created=datetime.now())
+            site.comments.append(comment)
+            site.save()
             flash("Comment on site {} successfully!".format(site.name),
                   'success')
             return redirect(url_for('site.detail', slug=site.slug))

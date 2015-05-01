@@ -54,7 +54,10 @@
 	    <a href="#" class="vote up"><i class="fa fa-thumbs-up"></i></a>
 	    <a href="#" class="vote down"><i class="fa fa-thumbs-down"></i></a>
 	    {{ comment.content }}
-	    <div class="datetime">{{ comment.created|format_time }}</div> by @{{ comment.author.username }}
+	    <div class="datetime">{{ comment.created|format_time }}</div>
+	    by <span title="{{ comment.author.ip or 'Registered user' }}">
+	      @{{ comment.author.username }}
+	    </span>
 	  </div>
 	{% endfor %}
       </p>
@@ -62,9 +65,10 @@
       <form action="{{ url_for('site.comment', site_id=site.id) }}" method="post">
 	{{ form.hidden_tag() }}
 	{% if g.user.is_authenticated() %}
-	  <input type="hidden" id="author" name="author" value="{{ g.user.id }}" />
+	  <input type="hidden" id="userid" name="userid" value="{{ g.user.id }}" />
+	  <input type="hidden" id="username" name="username" value="{{ g.user.username }}" />
 	{% else %}
-	  Comment as <input name="author" type="text" value="" id="author"/>
+	  Comment as <input name="username" type="text" value="" id="username"/>
 	{% endif %}
 	{{ form.content }}
 	<input type="submit" class="button" value="Submit" />

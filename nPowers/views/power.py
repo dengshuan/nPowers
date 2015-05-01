@@ -45,20 +45,24 @@ def tags():
 
 
 @mod.route('/comment/<power_id>', methods=['POST'])
-@login_required
 def comment(power_id):
     power = Power.objects.get_or_404(id=power_id)
     form = CommentForm(request.form)
     if form.validate_on_submit():
+        ip = request.remote_addr
         content = form.content.data
-        authorid = form.author.data
-        if authorid:
-            author = User.objects.get(id=authorid)
-            comment = Comment(content=content,
-                              author=author,
-                              created=datetime.now())
-            power.comments.append(comment)
-            power.save()
+        userid = form.userid.data
+        username = form.username.data
+        if userid:
+            user = User.objects.get_or_404(id=userid)
+        else:
+            user = User(username=username, ip=ip)
+            user.save()
+        comment = Comment(content=content,
+                          author=user,
+                          created=datetime.now())
+        power.comments.append(comment)
+        power.save()
         flash("Comment on power {} successfully!".format(power.name),
               'success')
         return redirect(url_for('power.detail', slug=power.slug))

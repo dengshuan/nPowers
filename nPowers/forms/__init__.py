@@ -11,7 +11,8 @@ from nPowers.utils.validators import Unique
 
 class CommentForm(Form):
     content = TextAreaField(validators=[Required()])
-    author = TextField(validators=[Required()])
+    username = TextField(validators=[Required()])
+    userid = TextField()
 
 
 class PowerForm(Form):

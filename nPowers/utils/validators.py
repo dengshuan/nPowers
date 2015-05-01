@@ -10,5 +10,5 @@ class Unique(object):
     def __call__(self, form, field):
         query = {self.field.name: field.data}
         check = self.model.objects.filter(**query).first()
-        if check:
+        if check and not check.is_anonymous():
             raise ValidationError(self.message)
