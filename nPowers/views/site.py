@@ -53,7 +53,7 @@ def detail(slug, page):
 def edit(slug):
     site = Site.objects.get_or_404(slug=slug)
     if request.method == 'GET':
-        key = str(uuid4())
+        key = 'uploads/' + str(uuid4())
         policy = {'callbackUrl': 'http://site-powered-by.org/upload',
                   'callbackBody': 'key=$(key)'}
         token = generate_token(key, policy)
@@ -92,7 +92,7 @@ def edit(slug):
 def add():
     if request.method == 'GET':
         form = SiteForm()
-        key = str(uuid4())
+        key = 'uploads/' + str(uuid4())
         policy = {'callbackUrl': 'http://site-powered-by.org/upload',
                   'callbackBody': 'key=$(key)'}
         token = generate_token(key, policy)

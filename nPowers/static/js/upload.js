@@ -25,7 +25,7 @@ $(document).ready(function() {
 	}).done(function(data) {
 	    $("#thumbnail")[0].src = data.url;
 	    $("#thumbnail").show();
-	    $("#img").val(data.key);
+	    $("#img").val(data.uuid);
 	});
 	return false;
     });

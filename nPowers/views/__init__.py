@@ -55,8 +55,8 @@ def upload():
     mode = '?imageView2/2/w/300/h/200'
     data = {
         'status': 'ok',
-        'key': key,
-        'url': app.config['QINIU_URL'] + 'uploads/' + key + mode
+        'uuid': key.split('/')[1],
+        'url': app.config['QINIU_URL'] + key + mode
     }
     return jsonify(data)
 
