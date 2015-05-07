@@ -1,4 +1,4 @@
-Use case talks! http://www.site-powered-by.org
+Use case talks! http://site-powered-by.org
 
 Ever difficult in choosing technique stacks? Maybe You'll find an
 answer here.
