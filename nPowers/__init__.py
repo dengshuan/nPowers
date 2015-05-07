@@ -8,6 +8,7 @@ from flask.ext.mail import Mail
 from itsdangerous import URLSafeTimedSerializer
 from werkzeug.contrib.fixers import ProxyFix
 
+
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_object('config.default')
 app.config.from_pyfile('config.py')
@@ -29,6 +30,14 @@ ts = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 @app.before_request
 def before_request():
     g.user = current_user
+
+
+@app.before_first_request
+def setup_logging():
+    if not app.debug:
+        import logging
+        app.logger.addHandler(logging.StreamHandler())
+        app.logger.setLevel(logging.INFO)
 
 
 @app.errorhandler(404)
