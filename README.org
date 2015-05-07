@@ -8,3 +8,7 @@ case can tell you what you want.
 
 For learners, live examples are the best learning resources. Learn
 from these open source site.
+
+
+*Warning:* This project is in early stage and under heavy development,
+ code may be ugly and buggy. Suggestions and PRs are welcomed!
